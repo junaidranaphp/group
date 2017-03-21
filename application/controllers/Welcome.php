@@ -22,4 +22,9 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+        public function test(){
+            $this->load->library('template');
+            $this->template->set_active_menu('components');
+            $this->template->show('template/header');
+        }
 }
