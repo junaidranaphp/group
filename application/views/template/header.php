@@ -14,40 +14,40 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css')?>">
         <!-- jQuery UI -->
-        <link rel="stylesheet" href="css/plugins/jquery-ui/jquery-ui.min.css">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/plugins/jquery-ui/jquery-ui.min.css')?>">
         <!-- Theme CSS -->
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
         <!-- Color CSS -->
-        <link rel="stylesheet" href="css/themes.css">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/themes.css')?>">
 
 
         <!-- jQuery -->
-        <script src="js/jquery.min.js"></script>
+        <script src="<?php echo base_url('assets/js/jquery.min.js')?>"></script>
 
         <!-- Nice Scroll -->
-        <script src="js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+        <script src="<?php echo base_url('assets/js/plugins/nicescroll/jquery.nicescroll.min.js')?>"></script>
         <!-- imagesLoaded -->
-        <script src="js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+        <script src="<?php echo base_url('assets/js/plugins/imagesLoaded/jquery.imagesloaded.min.js')?>"></script>
         <!-- jQuery UI -->
-        <script src="js/plugins/jquery-ui/jquery-ui.js"></script>
+        <script src="<?php echo base_url('assets/js/plugins/jquery-ui/jquery-ui.js')?>"></script>
         <!-- Touch enable for jquery UI -->
-        <script src="js/plugins/touch-punch/jquery.touch-punch.min.js"></script>
+        <script src="<?php echo base_url('assets/js/plugins/touch-punch/jquery.touch-punch.min.js')?>"></script>
         <!-- slimScroll -->
-        <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="<?php echo base_url('assets/js/plugins/slimscroll/jquery.slimscroll.min.js')?>"></script>
         <!-- Bootstrap -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
         <!-- Bootbox -->
-        <script src="js/plugins/bootbox/jquery.bootbox.js"></script>
+        <script src="<?php echo base_url('assets/js/plugins/bootbox/jquery.bootbox.js')?>"></script>
 
         <!-- Theme framework -->
-        <script src="js/eakroko.min.js"></script>
+        <script src="<?php echo base_url('assets/js/eakroko.min.js')?>"></script>
         <!-- Theme scripts -->
-        <script src="js/application.min.js"></script>
+        <script src="<?php echo base_url('assets/js/application.min.js')?>"></script>
         <!-- Just for demonstration -->
-        <script src="js/demonstration.min.js"></script>
+        <script src="<?php echo base_url('assets/js/demonstration.min.js')?>"></script>
 
         <!--[if lte IE 9]>
-                <script src="js/plugins/placeholder/jquery.placeholder.min.js"></script>
+                <script src="<?php echo base_url('assets/js/plugins/placeholder/jquery.placeholder.min.js')?>"></script>
                 <script>
                         $(document).ready(function() {
                                 $('input, textarea').placeholder();
@@ -56,9 +56,9 @@
                 <![endif]-->
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="img/favicon.ico" />
+        <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico')?>" />
         <!-- Apple devices Homescreen icon -->
-        <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="<?php echo base_url('assets/img/apple-touch-icon-precomposed.png')?>" />
 
     </head>
 
@@ -136,7 +136,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li <?php echo ($this->template->get_active_menu() == 'Tables') ? 'class="active"' : ''?>>
                         <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
                             <span>Tables</span>
                             <span class="caret"></span>
@@ -153,7 +153,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li <?php echo ($this->template->get_active_menu() == 'plugins') ? 'class="active"' : ''?>>
                         <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
                             <span>Plugins</span>
                             <span class="caret"></span>
@@ -183,7 +183,7 @@
 
                         </ul>
                     </li>
-                    <li>
+                    <li <?php echo ($this->template->get_active_menu() == 'pages') ? 'class="active"' : ''?>>
                         <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
                             <span>Pages</span>
                             <span class="caret"></span>
@@ -246,7 +246,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li <?php echo ($this->template->get_active_menu() == 'Layouts') ? 'class="active"' : ''?>>
                         <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
                             <span>Layouts</span>
                             <span class="caret"></span>
@@ -294,7 +294,7 @@
                             <ul class="dropdown-menu pull-right message-ul">
                                 <li>
                                     <a href="#">
-                                        <img src="img/demo/user-1.jpg" alt="">
+                                        <img src="<?php echo base_url('assets/img/demo/user-1.jpg')?>" alt="">
                                         <div class="details">
                                             <div class="name">Jane Doe</div>
                                             <div class="message">
@@ -305,7 +305,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <img src="img/demo/user-2.jpg" alt="">
+                                        <img src="<?php echo base_url('assets/img/demo/user-2.jpg')?>" alt="">
                                         <div class="details">
                                             <div class="name">John Doedoe</div>
                                             <div class="message">
@@ -320,7 +320,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <img src="img/demo/user-3.jpg" alt="">
+                                        <img src="<?php echo base_url('assets/img/demo/user-3.jpg')?>" alt="">
                                         <div class="details">
                                             <div class="name">Bob Doe</div>
                                             <div class="message">
@@ -395,31 +395,31 @@
                         </li>
                         <li class='dropdown language-select'>
                             <a href="#" class='dropdown-toggle' data-toggle="dropdown">
-                                <img src="img/demo/flags/us.gif" alt="">
+                                <img src="<?php echo base_url('assets/img/demo/flags/us.gif')?>" alt="">
                                 <span>US</span>
                             </a>
                             <ul class="dropdown-menu pull-right">
                                 <li>
                                     <a href="#">
-                                        <img src="img/demo/flags/br.gif" alt="">
+                                        <img src="<?php echo base_url('assets/img/demo/flags/br.gif')?>" alt="">
                                         <span>Brasil</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <img src="img/demo/flags/de.gif" alt="">
+                                        <img src="<?php echo base_url('assets/img/demo/flags/de.gif')?>" alt="">
                                         <span>Deutschland</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <img src="img/demo/flags/es.gif" alt="">
+                                        <img src="<?php echo base_url('assets/img/demo/flags/es.gif')?>" alt="">
                                         <span>España</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <img src="img/demo/flags/fr.gif" alt="">
+                                        <img src="<?php echo base_url('assets/img/demo/flags/fr.gif')?>" alt="">
                                         <span>France</span>
                                     </a>
                                 </li>
@@ -428,7 +428,7 @@
                     </ul>
                     <div class="dropdown">
                         <a href="#" class='dropdown-toggle' data-toggle="dropdown">John Doe
-                            <img src="img/demo/user-avatar.jpg" alt="">
+                            <img src="<?php echo base_url('assets/img/demo/user-avatar.jpg')?>" alt="">
                         </a>
                         <ul class="dropdown-menu pull-right">
                             <li>

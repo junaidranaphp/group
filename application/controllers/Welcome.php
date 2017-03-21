@@ -24,7 +24,7 @@ class Welcome extends CI_Controller {
 	}
         public function test(){
             $this->load->library('template');
-            $this->template->set_active_menu('components');
+            $this->template->set_active_menu('forms');
             $this->template->show('template/header');
         }
 }
