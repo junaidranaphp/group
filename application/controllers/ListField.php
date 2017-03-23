@@ -60,11 +60,12 @@ class ListField extends CI_Controller
             $data['listItem4'] = $list4;
             $data['session'] = $this->session->userdata;
 
-            $this->load->view('includes/header', $data);
-            $this->load->view('includes/toolbar', $data);
-            $this->load->view('includes/menu_left_clients', $data);
-            $this->load->view('listFields/index', $data);
-            $this->load->view('includes/footer');
+            $this->template->set_active_menu('forms')
+            ->set_heading('Cheetah')
+            ->set_page('listFields/index')
+            ->show($data);
+            
+          
         } else
         {
             redirect('login', 'refresh');

@@ -23,8 +23,9 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message');
 	}
         public function test(){
-            $this->load->library('template');
-            $this->template->set_active_menu('forms');
-            $this->template->show('template/header','template/temp','template/footer');
+            $this->template->set_active_menu('forms')
+            ->set_heading('Cheetah')
+            ->set_page('template/header')
+            ->show();
         }
 }

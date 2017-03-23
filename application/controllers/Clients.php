@@ -49,11 +49,11 @@ class Clients extends CI_Controller {
 		$data['records'] = $this->clients_model->get_addresses(); // get all
 		$data['session'] = $this->session->userdata;
 		
-		$this->load->view('includes/header', $header_data);
-		$this->load->view('includes/toolbar', $header_data);
-		$this->load->view('includes/menu_left_clients', $data);
-		$this->load->view('clients/index', $data);
-		$this->load->view('includes/footer');
+		
+		$this->template->set_active_menu('forms')
+            ->set_heading(LTEXT('_Clients'))
+            ->set_page('clients/index')
+            ->show($data);
 	}
 
 	public function view($id = NULL)
@@ -179,8 +179,9 @@ class Clients extends CI_Controller {
 				$value->kontakt_formen = $this->clients_model->get_kontakt_formen($value->id_zusatzadresse);
 			}
 		}
-		$this->load->view('includes/header', $header_data);
-		$this->load->view('includes/toolbar', $header_data);
+		
+		$this->load->view('template/header', $header_data);
+		
 		$this->load->view('includes/menu_left_clients', $data);
 		$this->load->view('clients/address', $data);
 		$this->load->view('includes/footer');

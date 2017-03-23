@@ -41,11 +41,10 @@ class Residences extends CI_Controller {
             $data['records'] = $this->residences_model->get_residences(); // get all
             $data['session'] = $this->session->userdata;
 
-            $this->load->view('includes/header', $data);
-            $this->load->view('includes/toolbar', $data);
-            $this->load->view('includes/menu_left_clients', $data);
-            $this->load->view('residences/index', $data);
-            $this->load->view('includes/footer');
+           $this->template->set_active_menu('forms')
+	            ->set_heading('Cheetah')
+	            ->set_page('residences/index')
+	            ->show($data);
         } else {
             //If no session, redirect to login page
             redirect('login', 'refresh');
@@ -56,12 +55,12 @@ class Residences extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['title'] = LTEXT('_add_residences');
             $data['session'] = $this->session->userdata;
-
-            $this->load->view('includes/header', $data);
-            $this->load->view('includes/toolbar', $data);
-            $this->load->view('includes/menu_left_clients', $data);
-            $this->load->view('residences/residencesadd', $data);
-            $this->load->view('includes/footer');
+            
+            $this->template->set_active_menu('forms')
+            ->set_heading('Cheetah')
+            ->set_page('residences/residencesadd')
+            ->show($data);
+            
         } else {
             //If no session, redirect to login page
             redirect('login', 'refresh');
@@ -75,11 +74,11 @@ class Residences extends CI_Controller {
             $data['editdata']   = $this->residences_model->editresidences($residenceID);
             $data['editID']     = $residenceID;
 
-            $this->load->view('includes/header', $data);
-            $this->load->view('includes/toolbar', $data);
-            $this->load->view('includes/menu_left_clients', $data);
-            $this->load->view('residences/residencesedit', $data);
-            $this->load->view('includes/footer');
+            $this->template->set_active_menu('forms')
+            ->set_heading('Cheetah')
+            ->set_page('residences/residencesedit')
+            ->show($data);
+            
         } else {
             //If no session, redirect to login page
             redirect('login', 'refresh');

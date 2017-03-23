@@ -26,11 +26,10 @@ class Language extends CI_Controller
 		$data['session'] = $this->session->userdata;		
 		$data['title'] = LTEXT('_admin_translations');			
 		
-		$this->load->view('includes/header', $data);
-		$this->load->view('includes/toolbar', $data);
-		$this->load->view('includes/menu_left_clients', $data);
-		$this->load->view('language/admin_translations',$data);
-		$this->load->view('includes/footer');
+		$this->template->set_active_menu('forms')
+		->set_heading('Cheetah')
+		->set_page('language/admin_translations')
+		->show($data);
 	}
 	public function add_admin_translation()
 	{
@@ -140,11 +139,11 @@ class Language extends CI_Controller
 			}
 			else
 			{
-				$this->load->view('includes/header', $data);
-				$this->load->view('includes/toolbar', $data);
-				$this->load->view('includes/menu_left_clients', $data);
-				$this->load->view('language/translation',$data);
-				$this->load->view('includes/footer');
+				$this->template->set_active_menu('forms')
+				->set_heading('Cheetah')
+				->set_page('language/translation')
+				->show($data);
+				
 			}
 		}
 	}

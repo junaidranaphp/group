@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<h1>
 			<a href="index.html">
-				<img src="img/logo-big.png" alt="" class='retina-ready' width="184" height="61"></a>
+				<img src="<?php echo base_url('assets/img/logo-big.png')?>" alt="" class='retina-ready' width="184" height="61"></a>
 		</h1>
 		<div class="login-body">
 			<?php echo "<h3>" . validation_errors() . "</h3>"; ?>
