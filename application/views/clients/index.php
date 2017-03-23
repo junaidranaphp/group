@@ -11,7 +11,7 @@
 							<i class="fa fa-times"></i>
 						</a>
 					</div>
-				</div>
+				</div>	
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="box box-color box-bordered">
@@ -73,7 +73,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 <script>
 	// A $( document ).ready() block.
 $( document ).ready(function() {
