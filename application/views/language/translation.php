@@ -1,28 +1,6 @@
 <?php defined('BASEPATH') or die('Restricted direct accesss'); ?>
 
-		<div id="main">
-			<div class="container-fluid">
-				<?php $this->load->view('includes/toolbar_box', $title);?>
-				<div class="breadcrumbs">
-					<?php 
-					$this->breadcrumbs->push(LTEXT('_admin_translations'),'/language/admin_translations');
-					if($translation)
-					{
-						$this->breadcrumbs->push(LTEXT('_edit_admin_translation'),'/language/edit_admin_translation/'.$translation->token);
-					}
-					else 
-					{
-						$this->breadcrumbs->push(LTEXT('_add_admin_translation'),'/language/add_admin_translation');
-					}
-					echo $this->breadcrumbs->show();
-					?>
-					<div class="close-bread">
-						<a href="#">
-							<i class="fa fa-times"></i>
-						</a>
-					</div>
-				</div>
-				<br>
+		
 				<div class="row">
 					<div class="col-sm-12">
 						<?php echo form_open('',array('class'=>'form-horizontal'))?>

@@ -1,17 +1,4 @@
-<div id="main">
-    <div class="container-fluid">
-    	<?php $this->load->view('includes/toolbar_box', $title);?>
-        <div class="breadcrumbs">
-			<?php 
-			$this->breadcrumbs->push(LTEXT('_residences'),'/residences');
-			echo $this->breadcrumbs->show();
-			?>
-			<div class="close-bread">
-				<a href="#">
-					<i class="fa fa-times"></i>
-				</a>
-			</div>
-		</div>
+
         <div>&nbsp;</div>
         <div><a href="<?php echo base_url();?>index.php/residences/residencesadd"><?php echo LTEXT('_add_residence')?></a></div>
         
@@ -70,8 +57,7 @@
         <?php } else{ ?>
         <div><?php echo LTEXT('_no_records_found')?></div>
         <?php } ?>
-    </div>
-</div>
+    
 <script type="text/javascript">
 function confirm_delete(confirm_text, delete_url) {
     if(confirm(confirm_text)) {

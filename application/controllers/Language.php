@@ -27,7 +27,7 @@ class Language extends CI_Controller
 		$data['title'] = LTEXT('_admin_translations');			
 		
 		$this->template->set_active_menu('forms')
-		->set_heading('Cheetah')
+		->set_heading(LTEXT('_admin_translations'))
 		->set_page('language/admin_translations')
 		->show($data);
 	}
@@ -140,7 +140,7 @@ class Language extends CI_Controller
 			else
 			{
 				$this->template->set_active_menu('forms')
-				->set_heading('Cheetah')
+				->set_heading(LTEXT('_edit_translation'))
 				->set_page('language/translation')
 				->show($data);
 				

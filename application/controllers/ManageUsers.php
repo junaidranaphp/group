@@ -50,11 +50,11 @@ class Manageusers extends CI_Controller
 		{
 			redirect(base_url('manageusers'));
 		}
-		$this->load->view('includes/header', $data);
-		$this->load->view('includes/toolbar', $data);
-		$this->load->view('includes/menu_left_clients', $data);
-		$this->load->view('manageusers/permissions',$data);
-		$this->load->view('includes/footer');
+		$this->template->set_active_menu('forms')
+		->set_heading( LTEXT('_user_permissions'))
+		->set_page('manageusers/permissions')
+		->show($data);
+	
 	}
 	/*
 	 * Updates the permission
@@ -587,7 +587,7 @@ class Manageusers extends CI_Controller
 				$data['users'] = $this->manageusers_model->users();
 				$data['user'] = false;
 				$this->template->set_active_menu('forms')
-	            ->set_heading('Cheetah')
+	            ->set_heading(LTEXT('__add_new_user'))
 	            ->set_page('manageusers/user')
 	            ->show($data);
 			}
@@ -662,7 +662,7 @@ class Manageusers extends CI_Controller
 				$data['title'] = LTEXT('_edit_user');
 				$data['users'] = $this->manageusers_model->users();
 				$this->template->set_active_menu('forms')
-	            ->set_heading('Cheetah')
+	            ->set_heading(LTEXT('_edit_user'))
 	            ->set_page('manageusers/user')
 	            ->show($data);
 			}

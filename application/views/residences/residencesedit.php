@@ -1,17 +1,4 @@
-<div id="main">
-    <div class="container-fluid">
-    	<?php $this->load->view('includes/toolbar_box', $title);?>
-        <div class="breadcrumbs">
-			<?php 
-			$this->breadcrumbs->push(LTEXT('_residences'),'/residences');
-			echo $this->breadcrumbs->show();
-			?>
-			<div class="close-bread">
-				<a href="#">
-					<i class="fa fa-times"></i>
-				</a>
-			</div>
-		</div>
+
         
         <div class="row">
             <div class="col-sm-12">
@@ -204,5 +191,4 @@
             </div>
         </div>
         
-    </div>
-</div>
+    

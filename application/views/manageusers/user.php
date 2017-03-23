@@ -1,27 +1,6 @@
 <?php defined('BASEPATH') or die('Restricted direct access'); ?>
 
-<div id="main">
-	<div class="container-fluid">
-		<?php $this->load->view('includes/toolbar_box', $title);?>
-		<div class="breadcrumbs">
-			<?php 
-			$this->breadcrumbs->push(LTEXT('_manage_users'),'/manageusers');
-			if($user)
-			{
-				$this->breadcrumbs->push(LTEXT('_edit_user'),'/manageusers/edit/'.$user->id);
-			}
-			else 
-			{
-				$this->breadcrumbs->push(LTEXT('_add_user'),'/manageusers/add');
-			}
-			echo $this->breadcrumbs->show();
-			?>
-			<div class="close-bread">
-				<a href="#">
-					<i class="fa fa-times"></i>
-				</a>
-			</div>
-		</div>
+
 		<?php if($this->session->flashdata('success_msg')) { ?>
 			<div class="alert alert-success">
 				<?php echo $this->session->flashdata('success_msg'); ?>

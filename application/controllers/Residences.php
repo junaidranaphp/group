@@ -42,7 +42,7 @@ class Residences extends CI_Controller {
             $data['session'] = $this->session->userdata;
 
            $this->template->set_active_menu('forms')
-	            ->set_heading('Cheetah')
+	            ->set_heading(LTEXT('_residences_all'))
 	            ->set_page('residences/index')
 	            ->show($data);
         } else {
@@ -57,7 +57,7 @@ class Residences extends CI_Controller {
             $data['session'] = $this->session->userdata;
             
             $this->template->set_active_menu('forms')
-            ->set_heading('Cheetah')
+            ->set_heading(LTEXT('_add_residences'))
             ->set_page('residences/residencesadd')
             ->show($data);
             
@@ -75,7 +75,7 @@ class Residences extends CI_Controller {
             $data['editID']     = $residenceID;
 
             $this->template->set_active_menu('forms')
-            ->set_heading('Cheetah')
+            ->set_heading(LTEXT('_edit_residences'))
             ->set_page('residences/residencesedit')
             ->show($data);
             
@@ -147,11 +147,11 @@ class Residences extends CI_Controller {
                 $data['session']        = $this->session->userdata;
                 $data['editID']         = $id;
                 $data['table']          = 'zusatzadressen_anlagen';
-                $this->load->view('includes/header', $data);
-                $this->load->view('includes/toolbar', $data);
-                $this->load->view('includes/menu_left_clients', $data);
-                $this->load->view('residences/anlagenzusatzadressen', $data);
-                $this->load->view('includes/footer');
+                $this->template->set_active_menu('forms')
+                ->set_heading(LTEXT('_available_residences'))
+                ->set_page('residences/anlagenzusatzadressen')
+                ->show($data);
+                
         } else {
                 //If no session, redirect to login page
                 redirect('login', 'refresh');

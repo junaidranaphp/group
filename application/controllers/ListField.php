@@ -61,7 +61,7 @@ class ListField extends CI_Controller
             $data['session'] = $this->session->userdata;
 
             $this->template->set_active_menu('forms')
-            ->set_heading('Cheetah')
+            ->set_heading(LTEXT('_adressen_all'))
             ->set_page('listFields/index')
             ->show($data);
             
@@ -82,11 +82,10 @@ class ListField extends CI_Controller
             $data['name'] = $name;
             $data['session'] = $this->session->userdata;
 
-            $this->load->view('includes/header', $data);
-            $this->load->view('includes/toolbar', $data);
-            $this->load->view('includes/menu_left_clients', $data);
-            $this->load->view('listFields/details', $data);
-            $this->load->view('includes/footer');
+             $this->template->set_active_menu('forms')
+            ->set_heading(LTEXT('_adressen_all'))
+            ->set_page('listFields/details')
+            ->show($data);
         } else
         {
             redirect('login', 'refresh');

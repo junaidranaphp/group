@@ -1,19 +1,5 @@
 <?php defined('BASEPATH') or die('Restricted direct access'); ?>
-<div id="main">
-	<div class="container-fluid">
-		<?php $this->load->view('includes/toolbar_box', $title);?>
-		<div class="breadcrumbs">
-			<?php 
-			$this->breadcrumbs->push(LTEXT('_manage_users'),'/manageusers');
-			$this->breadcrumbs->push(LTEXT('_users'),'/manageusers/index');
-			echo $this->breadcrumbs->show();
-			?>
-			<div class="close-bread">
-				<a href="#">
-					<i class="fa fa-times"></i>
-				</a>
-			</div>
-		</div>
+
 		<div class="row">
 			<div class="col-sm-12">
 				<?php if($this->session->flashdata('success_msg')) { ?>
@@ -73,5 +59,4 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
+	

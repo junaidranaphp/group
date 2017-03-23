@@ -11,10 +11,8 @@ class Login extends CI_Controller {
     {
         $data['title'] = 'Log in RedB';
         $this->load->helper(array('form'));
-        $this->template->set_active_menu('forms')
-            ->set_heading(LTEXT('_login_view'))
-            ->set_page('login_view')
-            ->show($data);
+        $this->load->view('template/header');
+       	$this->load->view('login_view',$data);
     }
 
 }

@@ -29,7 +29,7 @@ class Locations extends CI_Controller {
 			$data['session'] = $this->session->userdata;
 			
 			$this->template->set_active_menu('forms')
-            ->set_heading('Cheetah')
+            ->set_heading(LTEXT('_locations_all'))
             ->set_page('locations/index')
             ->show($data);
 		} else {

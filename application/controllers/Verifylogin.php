@@ -21,7 +21,7 @@
             if ($this->form_validation->run() == FALSE) {
                 //Field validation failed.  User redirected to login page
                 $data['title'] = "Log into RedB";
-                $this->load->view('includes/header', $data);			
+                $this->load->view('template/header', $data);			
                 $this->load->view('login_view');
                 $this->load->view('includes/footer');
             } else {
