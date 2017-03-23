@@ -51,7 +51,7 @@ class Clients extends CI_Controller {
 		
 		
 		$this->template->set_active_menu('forms')
-            ->set_heading(LTEXT('_Clients'))
+            ->set_heading(LTEXT('_global_addresses'))
             ->set_page('clients/index')
             ->show($data);
 	}
@@ -182,9 +182,8 @@ class Clients extends CI_Controller {
 		
 		$this->load->view('template/header', $header_data);
 		
-		$this->load->view('includes/menu_left_clients', $data);
+		$this->load->view('template/sidebar', $data);
 		$this->load->view('clients/address', $data);
-		$this->load->view('includes/footer');
 		$this->load->view('clients/address_modal');
 		$this->load->view('clients/data_modal');
 		$this->load->view('clients/contact_modal');
@@ -193,6 +192,7 @@ class Clients extends CI_Controller {
 		$this->load->view('clients/task_modal');
 		$this->load->view('clients/contacthistory_modal');
 		$this->load->view('clients/javascript');
+		$this->load->view('template/footer');
 	}
 	public function address_name_check($str)
 	{
