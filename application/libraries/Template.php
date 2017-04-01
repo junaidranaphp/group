@@ -2,6 +2,7 @@
 
 class Template{
     private $active_menu ;
+    private $active_submenu;
     private $heading;
     private $page;
     public function __construct(){
@@ -16,6 +17,13 @@ class Template{
     }
     public function get_active_menu(){
         return $this->active_menu;
+    }
+    public function set_active_submenu($menu_name){
+    	$this->active_submenu = $menu_name;
+    	return $this;
+    }
+    public function get_active_submenu(){
+    	return $this->active_submenu;
     }
     public function set_heading($heading){
     	$this->heading = $heading;

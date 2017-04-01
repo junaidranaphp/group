@@ -5,9 +5,9 @@ $i = 0;
 $config['menu']['clients'][$i]['title'] = "Clients Menu";
 $config['menu']['clients'][$i++]['url'] = "#";
 $config['menu']['clients'][$i]['title'] = "All Clients";
-$config['menu']['clients'][$i++]['url'] = "/clients";
+$config['menu']['clients'][$i++]['url'] = "clients";
 $config['menu']['clients'][$i]['title'] = "Advanded Search";
-$config['menu']['clients'][$i++]['url'] = "#";
+$config['menu']['clients'][$i++]['url'] = "clients/advanced_search";
 $config['menu']['clients'][$i]['title'] = "Add new";
 $config['menu']['clients'][$i++]['url'] = "#";
 

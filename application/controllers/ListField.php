@@ -5,13 +5,13 @@ if (!defined('BASEPATH'))
 
 //session_start(); //we need to call PHP's session object to access it through CI
 
-class ListField extends CI_Controller
+class Listfield extends CI_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('ListFields');
+        $this->load->model('Listfields');
     }
 
     public function index()
@@ -31,26 +31,26 @@ class ListField extends CI_Controller
 
             foreach ($list_options1 as $val)
             {
-                $count = $this->ListFields->getListFieldItemCount($val[1]);
-                $translation = $this->ListFields->getTranslation($val[0],$lang);
+                $count = $this->Listfields->getListFieldItemCount($val[1]);
+                $translation = $this->Listfields->getTranslation($val[0],$lang);
                 array_push($list1, array('field' => $translation[0]->$lang, 'count' => $count));
             }
             foreach ($list_options2 as $val)
             {
-                $count = $this->ListFields->getListFieldItemCount($val[1]);
-                $translation = $this->ListFields->getTranslation($val[0],$lang);
+                $count = $this->Listfields->getListFieldItemCount($val[1]);
+                $translation = $this->Listfields->getTranslation($val[0],$lang);
                 array_push($list2, array('field' => $translation[0]->$lang, 'count' => $count));
             }
             foreach ($list_options3 as $val)
             {
-                $count = $this->ListFields->getListFieldItemCount($val[1]);
+                $count = $this->Listfields->getListFieldItemCount($val[1]);
                 //$translation = $this->ListFields->getTranslation($val[0],$lang);
                 array_push($list3, array('field' => $val[0], 'count' => $count));
             }
             foreach ($list_options4 as $val)
             {
-                $count = $this->ListFields->getListFieldItemCount($val[1]);
-                $translation = $this->ListFields->getTranslation($val[0],$lang);
+                $count = $this->Listfields->getListFieldItemCount($val[1]);
+                $translation = $this->Listfields->getTranslation($val[0],$lang);
                 array_push($list4, array('field' => $translation[0]->$lang, 'count' => $count));
             }
             $data['title'] = LTEXT('_adressen_all');
@@ -60,12 +60,11 @@ class ListField extends CI_Controller
             $data['listItem4'] = $list4;
             $data['session'] = $this->session->userdata;
 
-            $this->template->set_active_menu('forms')
+            $this->template->set_active_menu('settings')
+            ->set_active_submenu('Listing Fields')
             ->set_heading(LTEXT('_adressen_all'))
             ->set_page('listFields/index')
             ->show($data);
-            
-          
         } else
         {
             redirect('login', 'refresh');
@@ -76,16 +75,17 @@ class ListField extends CI_Controller
     {
         if ($this->session->userdata('logged_in'))
         {
-            $items = $this->ListFields->getListFieldItemsByName($name);
+            $items = $this->Listfields->getListFieldItemsByName($name);
             $data['title'] = LTEXT('_adressen_all');
             $data['listItems'] = $items;
             $data['name'] = $name;
             $data['session'] = $this->session->userdata;
 
-             $this->template->set_active_menu('forms')
-            ->set_heading(LTEXT('_adressen_all'))
-            ->set_page('listFields/details')
-            ->show($data);
+            $this->template->set_active_menu('settings')
+	            ->set_active_submenu('Listing Field')
+	            ->set_heading(LTEXT('_adressen_all'))
+	            ->set_page('listFields/details')
+	            ->show($data);
         } else
         {
             redirect('login', 'refresh');

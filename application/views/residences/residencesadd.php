@@ -1,5 +1,4 @@
 
-        
         <div class="row">
             <div class="col-sm-12">
                 <div class="box box-color box-bordered">
@@ -186,4 +185,6 @@
                 </div>
             </div>
         </div>
-  
+        
+    </div>
+</div>

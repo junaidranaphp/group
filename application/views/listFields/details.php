@@ -1,4 +1,4 @@
-
+<?php defined('BASEPATH') or die('Restricted direct access'); ?>
         <div class="row">
             <div class="col-sm-12">
                 <div class="box box-color box-bordered">

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('Restricted direct access');
-class manageusers_model extends CI_Model
+class Manageusers_model extends CI_Model
 {
 	public function users()	//This function returns all the users
 	{

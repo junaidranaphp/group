@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or die('Restricted direct accesss'); ?>
 
-		
+		<br/>
 				<div class="row">
 					<div class="col-sm-12">
 						<?php echo form_open('',array('class'=>'form-horizontal'))?>
@@ -41,5 +41,4 @@
 						<?php echo form_close()?>	
 					</div>
 				</div>
-			</div>
-		</div>
+			

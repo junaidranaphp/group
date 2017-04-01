@@ -8,6 +8,7 @@ class Clients extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('clients_model');
+		$this->load->model('language_model');
 		if(!$this->session->userdata('logged_in')) 
 		{
 			redirect(base_url('login'),'refresh');
@@ -17,7 +18,7 @@ class Clients extends CI_Controller {
 	public function index()
 	{
 		$config['base_url'] =  base_url() . '/clients/index';
-		$config['total_rows'] = $this->clients_model->total();
+		$config['total_rows'] = count($this->clients_model->get_addresses());
 		
 		$config['per_page'] = 20;
 		$config['num_links'] = 5;
@@ -49,11 +50,12 @@ class Clients extends CI_Controller {
 		$data['records'] = $this->clients_model->get_addresses(); // get all
 		$data['session'] = $this->session->userdata;
 		
-		
-		$this->template->set_active_menu('forms')
-            ->set_heading(LTEXT('_global_addresses'))
-            ->set_page('clients/index')
-            ->show($data);
+	
+		$this->template->set_active_menu('clients')
+		->set_active_submenu('All Clients')
+		->set_heading(LTEXT('_global_addresses'))
+		->set_page('clients/index')
+		->show($data);
 	}
 
 	public function view($id = NULL)
@@ -150,12 +152,12 @@ class Clients extends CI_Controller {
 		
 		$data['session'] = $this->session->userdata;
 		$data['address'] = $this->clients_model->get_address($id);
-		$data['bewertung'] = $this->clients_model->get_listfield(3,'bewertung');
-		$data['KontaktArts'] = $this->clients_model->get_listfield(1,'ZusatzKontaktArten');
-		$data['countries'] = $this->clients_model->get_listfield(3,'laender');
-		$data['anrede'] = $this->clients_model->get_listfield(3,'anrede');
+		$data['bewertung'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'bewertung');
+		$data['KontaktArts'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'ZusatzKontaktArten');
+		$data['countries'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'laender');
+		$data['anrede'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'anrede');
 		//$data['sprache'] = $this->clients_model->get_def_sprachen();
-		$data['kundenaquise'] = $this->clients_model->get_listfield(1,'kundenaquise');
+		$data['kundenaquise'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'kundenaquise');
 		
 		$data['objects_for_menu'] = $this->clients_model->get_objects_for_menu($id);
 		$data['in_charge'] = $this->clients_model->get_in_charge($id);
@@ -164,11 +166,11 @@ class Clients extends CI_Controller {
 		$data['zusatzdaten'] = $this->clients_model->get_zusatzdaten($id);
 		$data['kontakt_formen'] = $this->clients_model->get_kontakt_formen($id);
 		$data['sachbearbeiter'] = $this->clients_model->get_sachbearbeiters($id);
-		$data['objekttyp'] = $this->clients_model->get_listfield(1,'objekttyp');
-		$data['objekttyp2'] = $this->clients_model->get_listfield(1,'objekttyp');
-		$data['nutzungsart'] = $this->clients_model->get_listfield(1,'nutzungsart');
-		$data['region'] = $this->clients_model->get_listfield(1,'region');
-		$data['anlage'] = $this->clients_model->get_listfield(1,'anlage');
+		$data['objekttyp'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'objekttyp');
+		$data['objekttyp2'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'objekttyp');
+		$data['nutzungsart'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'nutzungsart');
+		$data['region'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'region');
+		$data['anlage'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'anlage');
 		$data['suchprofil'] = $this->clients_model->get_suchprofiles($id);
 		$data['tasks'] = $this->clients_model->get_calendars($id);
 		$data['contact_histories'] = $this->clients_model->get_contact_histories($id);
@@ -180,19 +182,12 @@ class Clients extends CI_Controller {
 			}
 		}
 		
-		$this->load->view('template/header', $header_data);
 		
-		$this->load->view('template/sidebar', $data);
-		$this->load->view('clients/address', $data);
-		$this->load->view('clients/address_modal');
-		$this->load->view('clients/data_modal');
-		$this->load->view('clients/contact_modal');
-		$this->load->view('clients/incharge_modal');
-		$this->load->view('clients/search_profile_modal');
-		$this->load->view('clients/task_modal');
-		$this->load->view('clients/contacthistory_modal');
-		$this->load->view('clients/javascript');
-		$this->load->view('template/footer');
+		$this->template->set_active_menu('clients')
+			->set_active_submenu('edit')
+			->set_heading(LTEXT('_global_addresses'))
+			->set_page('view_address')
+			->show($data);
 	}
 	public function address_name_check($str)
 	{
@@ -221,7 +216,7 @@ class Clients extends CI_Controller {
 	public function add_address_ajax()
 	{
 		$data['session'] = $this->session->userdata;
-		$ZusatzKontaktArten = $this->clients_model->get_listfield(3,'ZusatzKontaktArten');
+		$ZusatzKontaktArten = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'ZusatzKontaktArten');
 		$SA_SuchTyp = array(-1=>'Kunden',-2=>LTEXT("_owner"),6=>LTEXT("_in_charge"));
 		foreach ($ZusatzKontaktArten as $type)
 		{
@@ -381,7 +376,7 @@ class Clients extends CI_Controller {
 			}
 		}
 		$data['zusatzdaten'] = false;
-		$data['types'] = $this->clients_model->get_listfield(3,'zusatzdaten');
+		$data['types'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'zusatzdaten');
 		$this->load->view('clients/add_data_ajax',$data);
 	}
 	public function update_additional_data_ajax($id)
@@ -431,7 +426,7 @@ class Clients extends CI_Controller {
 			}
 		}
 		$data['zusatzdaten'] = $this->clients_model->get_zusatzdatenn($id);
-		$data['types'] = $this->clients_model->get_listfield(3,'zusatzdaten');
+		$data['types'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'zusatzdaten');
 		$this->load->view('clients/add_data_ajax',$data);
 	}
 	public function add_contact_ajax()
@@ -488,7 +483,7 @@ class Clients extends CI_Controller {
 			}
 		}
 		$data['kontakt_formen'] = false;
-		$data['types'] = $this->clients_model->get_listfield(1,'kontaktform');
+		$data['types'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'kontaktform');
 		$this->load->view('clients/add_contact_ajax',$data);
 	}
 	public function update_additional_contact_ajax($id)
@@ -563,7 +558,7 @@ class Clients extends CI_Controller {
 			}
 		}
 		$data['kontakt_formen'] = $this->clients_model->get_kontakt_formens($id);
-		$data['types'] = $this->clients_model->get_listfield(1,'kontaktform');
+		$data['types'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'kontaktform');
 		$this->load->view('clients/add_contact_ajax',$data);
 	}
 	public function add_incharge_ajax()
@@ -739,11 +734,11 @@ class Clients extends CI_Controller {
 			$this->clients_model->insert_suchprofil($insert_data);
 			$data['success_message'] = LTEXT('_search_profile_added_successfully').'<br>'.LTEXT('_add_more_data_or_close');
 		}
-		$data['objekttyp'] = $this->clients_model->get_listfield(1,'objekttyp');
-		$data['objekttyp2'] = $this->clients_model->get_listfield(1,'objekttyp');
-		$data['nutzungsart'] = $this->clients_model->get_listfield(1,'nutzungsart');
-		$data['region'] = $this->clients_model->get_listfield(1,'region');
-		$data['anlage'] = $this->clients_model->get_listfield(1,'anlage');
+		$data['objekttyp'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'objekttyp');
+		$data['objekttyp2'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'objekttyp');
+		$data['nutzungsart'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'nutzungsart');
+		$data['region'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'region');
+		$data['anlage'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'anlage');
 		$this->load->view('clients/add_search_profile_ajax',$data);
 	}
 	public function update_search_profile_ajax($id)
@@ -1177,7 +1172,7 @@ class Clients extends CI_Controller {
 			}
 		}
 		$data['users'] =$this->clients_model->get_users();
-		$data['kalendereintragart'] = $this->clients_model->get_listfield(1,'kalendereintragart');
+		$data['kalendereintragart'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'kalendereintragart');
 		$data['task'] = $task;
 		$this->load->view('clients/add_task_ajax',$data);
 	}
@@ -1209,8 +1204,8 @@ class Clients extends CI_Controller {
 			}
 		}	
 		$data['contact_history'] = false;
-		$data['kontaktart'] = $this->clients_model->get_listfield(1,'kontaktart');
-		$data['aktion']= $this->clients_model->get_listfield(1,'kontakthistorie_aktion');
+		$data['kontaktart'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'kontaktart');
+		$data['aktion']= $this->clients_model->get_listfield($this->session->userdata('lang_id'),'kontakthistorie_aktion');
 		$this->load->view('clients/add_contacthistory_ajax',$data);
 	}
 	public function update_contacthistory_ajax($id)
@@ -1266,9 +1261,113 @@ class Clients extends CI_Controller {
 			}
 		}
 		$data['contact_history'] = $this->clients_model->get_contacthistory($id);
-		$data['kontaktart'] = $this->clients_model->get_listfield(1,'kontaktart');
-		$data['aktion']= $this->clients_model->get_listfield(1,'kontakthistorie_aktion');
+		$data['kontaktart'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'kontaktart');
+		$data['aktion']= $this->clients_model->get_listfield($this->session->userdata('lang_id'),'kontakthistorie_aktion');
 		
 		$this->load->view('clients/add_contacthistory_ajax',$data);
+	}
+	public function advanced_search()
+	{
+		$this->form_validation->set_rules('SASearchStatus','You','required');
+		$this->form_validation->set_rules('SASearchSprache','You','');
+		$this->form_validation->set_rules('SAnewsletter','You','');
+		$this->form_validation->set_rules('SASearchTextAddress','You','');
+		$this->form_validation->set_rules('SASuchTyp','You','');
+		$this->form_validation->set_rules('SASearchTextNachname','You','');
+		$this->form_validation->set_rules('SASearchTextVorname','You','');
+		$this->form_validation->set_rules('SASachbearbeiter','You','');
+		$this->form_validation->set_rules('SAkundenaquise','You','');
+		$this->form_validation->set_rules('SAobjekttyp','You','');
+		$this->form_validation->set_rules('SAnutzungsart','You','');
+		$this->form_validation->set_rules('SAregion','You','');
+		$this->form_validation->set_rules('OS_Ort','You','');
+		$this->form_validation->set_rules('SAresidenz','You','');
+		$this->form_validation->set_rules('SAerste_linie','You','');
+		$this->form_validation->set_rules('SAkaufen','You','');
+		$this->form_validation->set_rules('SAmieten','You','');
+		$this->form_validation->set_rules('SApreis_von','You','');
+		$this->form_validation->set_rules('SApreis_bis','You','');
+		$this->form_validation->set_rules('SAwohnflaeche_von','You','');
+		$this->form_validation->set_rules('SAwohnflaeche_bis','You','');
+		$this->form_validation->set_rules('SAgrundstueck_von','You','');
+		$this->form_validation->set_rules('SAgrundstueck_bis','You','');
+		$this->form_validation->set_rules('SAschlafzimmer_von','You','');
+		$this->form_validation->set_rules('SAschlafzimmer_bis','You','');
+		$this->form_validation->set_rules('SAbaeder_von','You','');
+		$this->form_validation->set_rules('SAbaeder_bis','You','');
+		if ($this->form_validation->run() == false)
+		{
+			$data['title'] = LTEXT('_advanced_search');
+			$data['search'] = $this->session->userdata('advanced_search_filter');
+			$data['languages'] = $this->language_model->get_languages();
+			$data['ZusatzKontaktArtens'] = $this->clients_model->get_listfield($this->session->userdata('lang_id') , 'ZusatzKontaktArten');
+			$data['adressen_by_kontaktart6'] = $this->clients_model->get_adressen_by_kontaktart();
+			$data['kundenaquise'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'kundenaquise');
+			$data['objekttyps'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'objekttyp');
+			$data['nutzungsart'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'nutzungsart');
+			$data['region'] = $this->clients_model->get_listfield($this->session->userdata('lang_id'),'region');
+			$data['anlagen'] = $this->clients_model->get_anlagen($this->session->userdata('lang_id'),'anlagen');
+			$header_data['title'] = LTEXT('_advanced_search');
+			$this->clients_model->get_me();
+			$this->template->set_active_menu('clients')
+			->set_active_submenu('_advanced_search')
+			->set_heading(LTEXT('_advanced_search'))
+			->set_page('clients/address_advance_search')
+			->show($data);
+			
+		}
+		else
+		{
+			$search['SA_Sachbearbeiter'] = $this->input->post('SASachbearbeiter'); 
+			$search['SA_newsletter'] = $this->input->post('SAnewsletter'); 
+			$search['SA_SearchSprache'] = $this->input->post('SASearchSprache'); 
+			$search['SA_SearchTextAddress'] = $this->input->post('SASearchTextAddress'); 
+			$search['SA_SearchStatus'] = $this->input->post('SASearchStatus'); 
+			$search['SA_SearchTextNachname'] = $this->input->post('SASearchTextNachname'); 
+			$search['SA_SearchTextVorname'] = $this->input->post('SASearchTextVorname'); 
+			$search['SA_kundenaquise'] = $this->input->post('SAkundenaquise'); 
+			$search['SA_SuchTyp'] = $this->input->post('SASuchTyp'); 	// kunde eigentuemer
+			$search['SA_User'] = $this->input->post('SAUser'); 
+			$search['SA_AD_Day_from'] = $this->input->post('SAAD_Day_from'); 
+			$search['SA_AD_Month_from'] = $this->input->post('SAAD_Month_from'); 
+			$search['SA_AD_Year_from'] = $this->input->post('SAAD_Year_from'); 
+			$search['SA_AD_Day_to'] = $this->input->post('SAAD_Day_to'); 
+			$search['SA_AD_Month_to'] = $this->input->post('SAAD_Month_to'); 
+			$search['SA_AD_Year_to'] = $this->input->post('SAAD_Year_to'); 
+			$search['SA_CD_Day_from'] = $this->input->post('SACD_Day_from'); 
+			$search['SA_CD_Month_from'] = $this->input->post('SACD_Month_from'); 
+			$search['SA_CD_Year_from'] = $this->input->post('SACD_Year_from'); 
+			$search['SA_CD_Day_to'] = $this->input->post('SACD_Day_to'); 
+			$search['SA_CD_Month_to'] = $this->input->post('SACD_Month_to'); 
+			$search['SA_CD_Year_to'] = $this->input->post('SACD_Year_to'); 
+			$search['SA_objekttyp'] = $this->input->post('SAobjekttyp'); 
+			$search['SA_nutzungsart'] = $this->input->post('SAnutzungsart'); 
+			$search['SA_region'] = $this->input->post('SAregion'); 
+			$search['SA_residenz'] = $this->input->post('SAresidenz'); 
+			$search['SA_ort'] = $this->input->post('OS_Ort'); 
+			$search['SA_angebotsart'] = $this->input->post('SAangebotsart');
+			$search['SA_kaufen']=(int)$this->input->post('SAkaufen'); 
+			$search['SA_mieten']=(int)$this->input->post('SAmieten'); 
+			$search['SA_erste_linie']=(int)$this->input->post('SAerste_linie'); 
+			unset($search['SA_meerblick']);
+			//if(requestIsset('SAmeerblick'))$search['SA_meerblick']=(int)$this->input->post('SAmeerblick'); 
+			$search['SA_preis_von'] = $this->input->post('SApreis_von'); 
+			$search['SA_preis_bis'] = $this->input->post('SApreis_bis'); 
+			$search['SA_wohnflaeche_von'] = $this->input->post('SAwohnflaeche_von'); 
+			$search['SA_wohnflaeche_bis'] = $this->input->post('SAwohnflaeche_bis'); 
+			$search['SA_grundstueck_von'] = $this->input->post('SAgrundstueck_von'); 
+			$search['SA_grundstueck_bis'] = $this->input->post('SAgrundstueck_bis'); 
+			$search['SA_schlafzimmer_von'] = $this->input->post('SAschlafzimmer_von'); 
+			$search['SA_schlafzimmer_bis'] = $this->input->post('SAschlafzimmer_bis'); 
+			$search['SA_baeder_von'] = $this->input->post('SAbaeder_von');
+			$search['SA_baeder_bis'] = $this->input->post('SAbaeder_bis');
+			$this->session->set_userdata('advanced_search_filter',$search);
+			redirect(base_url('clients'));
+		}
+	}
+	function reset_search()
+	{
+		$this->session->unset_userdata('advanced_search_filter');
+		redirect(base_url('clients'));
 	}
 }

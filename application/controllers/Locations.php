@@ -28,10 +28,11 @@ class Locations extends CI_Controller {
 			$data['records'] = $this->locations_model->get_locations(); // get all
 			$data['session'] = $this->session->userdata;
 			
-			$this->template->set_active_menu('forms')
-            ->set_heading(LTEXT('_locations_all'))
-            ->set_page('locations/index')
-            ->show($data);
+			$this->template->set_active_menu('settings')
+			->set_active_submenu('Locations')
+			->set_heading(LTEXT('_locations_all'))
+			->set_page('locations/index')
+			->show($data);
 		} else {
 			//If no session, redirect to login page
 			redirect('login', 'refresh');

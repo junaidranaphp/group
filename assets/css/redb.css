@@ -1,0 +1,9 @@
+.sort {
+    float: right;    
+}
+
+.sort i {
+    display: block;
+    cursor: pointer;
+    line-height: 8px;
+}

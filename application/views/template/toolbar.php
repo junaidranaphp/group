@@ -29,9 +29,9 @@
 					<ul>
 						<li><a href="more-login.html">Home</a> <i
 							class="fa fa-angle-right"></i></li>
-						<li><a href="forms-basic.html">Forms</a> <i
+						<li><a href="#"><?php echo $this->template->get_active_menu()?></a> <i
 							class="fa fa-angle-right"></i></li>
-						<li><a href="forms-basic.html">Basic forms</a></li>
+						<li><a href="forms-basic.html"><?php echo $this->template->get_active_submenu()?></a></li>
 					</ul>
 					<div class="close-bread">
 						<a href="#"> <i class="fa fa-times"></i>

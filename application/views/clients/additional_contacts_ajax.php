@@ -26,14 +26,14 @@ echo LTEXT('_global_no_results_found');
    					<td>
 						<div class="action-group">
 							<button  class="btn edit-additional-contact"  data-id_address="<?php echo $value->id?>" >
-								<i class="fa fa-edit"></i>
-							</button>
-							<button class="btn remove-additional-contact" data-id_address="<?php echo $value->id?>" >
-								<i class="fa fa-times"></i>
-							</button>
-						</div>
-					</td>
-				</tr>
+							<i class="fa fa-edit"></i>
+						</button>
+						<button class="btn remove-additional-contact" data-id_address="<?php echo $value->id?>" >
+							<i class="fa fa-times"></i>
+						</button>
+					</div>
+				</td>
+			</tr>
 		<?php }?>
 	</tbody>
 </table>

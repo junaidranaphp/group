@@ -1,6 +1,6 @@
 <?php
 
-class ListFields extends CI_Model
+class Listfields extends CI_Model
 {
     public function getListFieldItemsByName($name=NULL)
     {

@@ -27,7 +27,8 @@ class Manageusers extends CI_Controller
 		$data['session'] = $this->session->userdata;			
 		$data['title'] = LTEXT('_manage_users');
 		$data['users'] = $this->manageusers_model->users();//Getting all users
-		$this->template->set_active_menu('forms')
+		$this->template->set_active_menu('settings')
+		->set_active_submenu('User Manager')
 		->set_heading(LTEXT('_manage_users'))
 		->set_page('manageusers/users')
 		->show($data);
@@ -50,11 +51,11 @@ class Manageusers extends CI_Controller
 		{
 			redirect(base_url('manageusers'));
 		}
-		$this->template->set_active_menu('forms')
+		$this->template->set_active_menu('settings')
+		->set_active_submenu('User Manager')
 		->set_heading( LTEXT('_user_permissions'))
 		->set_page('manageusers/permissions')
 		->show($data);
-	
 	}
 	/*
 	 * Updates the permission
@@ -586,10 +587,12 @@ class Manageusers extends CI_Controller
 				$data['title'] = LTEXT('__add_new_user');
 				$data['users'] = $this->manageusers_model->users();
 				$data['user'] = false;
-				$this->template->set_active_menu('forms')
-	            ->set_heading(LTEXT('__add_new_user'))
-	            ->set_page('manageusers/user')
-	            ->show($data);
+				
+				$this->template->set_active_menu('settings')
+				->set_active_submenu('__add_new_user')
+				->set_heading( LTEXT('__add_new_user'))
+				->set_page('manageusers/user')
+				->show($data);
 			}
 		}
 		else if($id > 0)
@@ -662,6 +665,7 @@ class Manageusers extends CI_Controller
 				$data['title'] = LTEXT('_edit_user');
 				$data['users'] = $this->manageusers_model->users();
 				$this->template->set_active_menu('forms')
+				->set_active_submenu('User Manager')
 	            ->set_heading(LTEXT('_edit_user'))
 	            ->set_page('manageusers/user')
 	            ->show($data);

@@ -41,10 +41,11 @@ class Residences extends CI_Controller {
             $data['records'] = $this->residences_model->get_residences(); // get all
             $data['session'] = $this->session->userdata;
 
-           $this->template->set_active_menu('forms')
-	            ->set_heading(LTEXT('_residences_all'))
-	            ->set_page('residences/index')
-	            ->show($data);
+            $this->template->set_active_menu('settings')
+            ->set_active_submenu('Residences')
+            ->set_heading(LTEXT('_residences_all'))
+            ->set_page('residences/index')
+            ->show($data);
         } else {
             //If no session, redirect to login page
             redirect('login', 'refresh');
@@ -55,8 +56,9 @@ class Residences extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['title'] = LTEXT('_add_residences');
             $data['session'] = $this->session->userdata;
-            
-            $this->template->set_active_menu('forms')
+
+            $this->template->set_active_menu('settings')
+            ->set_active_submenu('Residences')
             ->set_heading(LTEXT('_add_residences'))
             ->set_page('residences/residencesadd')
             ->show($data);
@@ -74,11 +76,11 @@ class Residences extends CI_Controller {
             $data['editdata']   = $this->residences_model->editresidences($residenceID);
             $data['editID']     = $residenceID;
 
-            $this->template->set_active_menu('forms')
+             $this->template->set_active_menu('settings')
+            ->set_active_submenu('Residences')
             ->set_heading(LTEXT('_edit_residences'))
             ->set_page('residences/residencesedit')
             ->show($data);
-            
         } else {
             //If no session, redirect to login page
             redirect('login', 'refresh');
@@ -147,11 +149,11 @@ class Residences extends CI_Controller {
                 $data['session']        = $this->session->userdata;
                 $data['editID']         = $id;
                 $data['table']          = 'zusatzadressen_anlagen';
-                $this->template->set_active_menu('forms')
+               $this->template->set_active_menu('settings')
+                ->set_active_submenu('Residences')
                 ->set_heading(LTEXT('_available_residences'))
                 ->set_page('residences/anlagenzusatzadressen')
                 ->show($data);
-                
         } else {
                 //If no session, redirect to login page
                 redirect('login', 'refresh');
@@ -164,11 +166,11 @@ class Residences extends CI_Controller {
         if($this->session->userdata('logged_in')) {
                 $data['title']          = LTEXT('_popup');
                 $data['session']        = $this->session->userdata;
-                $this->load->view('includes/header', $data);
-                $this->load->view('includes/toolbar', $data);
-                $this->load->view('includes/menu_left_clients', $data);
-                $this->load->view('residences/popanlagenzusatzadressen', $data);
-                $this->load->view('includes/footer');
+                 $this->template->set_active_menu('settings')
+                ->set_active_submenu('Residences')
+                ->set_heading(LTEXT('_popup'))
+                ->set_page('residences/popanlagenzusatzadressen')
+                ->show($data);
         } else {
                 //If no session, redirect to login page
                 redirect('login', 'refresh');
@@ -181,11 +183,11 @@ class Residences extends CI_Controller {
                 $data['session']        = $this->session->userdata;
                 $data['id_anlage']      = $this->input->post('id_anlage'); 
                 $data['table']      = $this->input->post('table'); 
-                $this->load->view('includes/header', $data);
-                $this->load->view('includes/toolbar', $data);
-                $this->load->view('includes/menu_left_clients', $data);
-                $this->load->view('residences/listsearchresult', $data);
-                $this->load->view('includes/footer');
+                $this->template->set_active_menu('settings')
+                ->set_active_submenu('Residences')
+                ->set_heading(LTEXT('_popup'))
+                ->set_page('residences/listsearchresult')
+                ->show($data);
         } else {
                 //If no session, redirect to login page
                 redirect('login', 'refresh');

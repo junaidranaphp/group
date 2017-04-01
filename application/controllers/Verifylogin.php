@@ -23,7 +23,7 @@
                 $data['title'] = "Log into RedB";
                 $this->load->view('template/header', $data);			
                 $this->load->view('login_view');
-                $this->load->view('includes/footer');
+                $this->load->view('template/footer');
             } else {
                 //Go to private area
                 redirect('clients', 'refresh');                

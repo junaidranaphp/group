@@ -57,7 +57,8 @@
         <?php } else{ ?>
         <div><?php echo LTEXT('_no_records_found')?></div>
         <?php } ?>
-    
+    </div>
+</div>
 <script type="text/javascript">
 function confirm_delete(confirm_text, delete_url) {
     if(confirm(confirm_text)) {

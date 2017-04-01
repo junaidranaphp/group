@@ -1,15 +1,8 @@
 <?php defined('BASEPATH') or exit('Restricted access'); ?>
-
-
-		<?php if($this->session->flashdata('success_msg')) { ?>
-			<div class="alert alert-success">
-				<?php echo $this->session->flashdata('success_msg'); ?>
-			</div>
-		<?php } ?>
-	<div>
+		<br/>
 		<a class="btn btn-success" href="<?php echo base_url('manageusers')?>"><?php echo LTEXT('_users');?></a>
 		<a class="btn btn-success" href="<?php echo base_url('manageusers/add')?>"><?php echo LTEXT('_add_new_user')?></a>
-	</div>
+	
 	<h2 class="text-center"><?php echo LTEXT('_permissions_for')?> <?php echo $session['name']?></h2>
 	<div class="box box-color box-bordered">
 		<div class="box-title">
@@ -281,4 +274,4 @@
 				<?php echo form_close()?>
 			</div>
 		</div>
-
+	

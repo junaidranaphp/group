@@ -8,6 +8,181 @@ class Clients_model extends CI_Model {
         
         public function get_addresses($id = FALSE)
         {
+        	if($this->session->userdata('advanced_search_filter'))
+        	{
+        		$search = $this->session->userdata('advanced_search_filter') ;
+        		$no_search = true;
+        		if($search['SA_objekttyp'] != 'all')
+        		{
+        			$no_search = false;
+        			$this->db->where('objekttyp',$search['SA_objekttyp']);
+        		}
+        		if($search['SA_newsletter'] == '1')
+        		{
+        			$no_search = false;
+        			$this->db->where('newsletter',$search['SA_newsletter']);
+        		}
+        		if(false)
+        		{
+        			//SA_angebotsart
+        		}
+        		if($search['SA_kaufen'] == '1')
+        		{
+        			$no_search = false;
+        			$this->db->where('kaufen',$search['SA_kaufen']);
+        		}
+        		if($search['SA_mieten'] == '1')
+        		{
+        			$no_search = false;
+        			$this->db->where('mieten',$search['SA_kaufen']);
+        		}
+        		if($search['SA_preis_von'] >= '0')
+        		{
+        			$no_search = false;
+        			$this->db->where('sp.preis_von >=',$search['SA_preis_von']);
+        		}
+        		if($search['SA_preis_bis'] >= '0')
+        		{
+        			$no_search = false;
+        			$this->db->where('sp.preis_bis <=',$search['SA_preis_bis']);
+        		}
+        		if($search['SA_wohnflaeche_von'] >= '0')
+        		{
+        			$no_search = false;
+        			$this->db->where('wohnflaeche_von >=',$search['SA_wohnflaeche_von']);
+        		}
+        		if($search['SA_wohnflaeche_bis'] >= '0')
+        		{
+        			$no_search = false;
+        			$this->db->where('wohnflaeche_von <=',$search['SA_wohnflaeche_bis']);
+        		}
+        		if($search['SA_grundstueck_von'] >= '0')
+        		{
+        			$no_search = false;
+        			$this->db->where('grundstueck_von >=',$search['SA_grundstueck_von']);
+        		}
+        		if($search['SA_grundstueck_bis'] >= '0')
+        		{
+        			$no_search = false;
+        			$this->db->where('grundstueck_von <=',$search['SA_grundstueck_bis']);
+        		}
+        		if($search['SA_schlafzimmer_von'] >= '0')
+        		{
+        			$no_search = false;
+        			$this->db->where('schlafzimmer_von >=',$search['SA_schlafzimmer_von']);
+        		}
+        		if($search['SA_schlafzimmer_bis'] >= '0')
+        		{
+        			$no_search = false;
+        			$this->db->where('schlafzimmer_von <=',$search['SA_schlafzimmer_bis']);
+        		}
+        		
+        		if($search['SA_baeder_von'] >= '0')
+        		{
+        			$no_search = false;
+        			$this->db->where('baeder_von >=',$search['SA_baeder_von']);
+        		}
+        		if($search['SA_baeder_bis'] >= '0')
+        		{
+        			$no_search = false;
+        			$this->db->where('baeder_von >=',$search['SA_baeder_bis']);
+        		}
+        		
+        		if($search['SA_SearchStatus'] != 'all')
+        		{
+        			$no_search = false;
+        			$this->db->where('adressen.status ',$search['SA_SearchStatus']);
+        		}
+        		
+        		if($search['SA_nutzungsart'] != 'all')
+        		{
+        			$no_search = false;
+        			$this->db->where('sp.nutzungsart ',$search['SA_nutzungsart']);
+        		}
+        		if($search['SA_region'] != 'all')
+        		{
+        			$no_search = false;
+        			$this->db->where('sp.region ',$search['SA_region']);
+        		}
+        		if($search['SA_residenz'] != 'all')
+        		{
+        			$no_search = false;
+        			$this->db->where('sp.anlage ',$search['SA_residenz']);
+        		}
+        		if($search['SA_SearchSprache'] != 'all')
+        		{
+        			$no_search = false;
+        			$this->db->where('adressen.sprache ',$search['SA_SearchSprache']);
+        		}
+        		if($search['SA_SearchTextNachname'] != '')
+        		{
+        			$no_search = false;
+        			$this->db->like('lower('.$this->db->dbprefix.'adressen.name) ',mb_strtolower($search['SA_SearchTextNachname']));
+        		}
+        		if($search['SA_SearchTextVorname'] != '')
+        		{
+        			$no_search = false;
+        			$this->db->like('lower('.$this->db->dbprefix.'adressen.vorname) ',mb_strtolower($search['SA_SearchTextVorname']));
+        		}
+        		if($search['SA_kundenaquise'] != 'all')
+        		{
+        			$no_search = false;
+        			$this->db->where('adressen.kundenaquise ',$search['SA_kundenaquise']);
+        		}
+        		if($search['SA_SearchTextAddress'] != '')
+        		{
+        			$no_search = false;
+        			$s = mb_strtolower($search['SA_SearchTextAddress']) ;
+        			$this->db->where(' 
+        				(
+        					lower('.$this->db->dbprefix.'kontakt_formen.searchtext) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'kontakt_formen.text) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'kontakt_formen.notiz) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'zusatzadressen.note) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'adressen.plz) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'adressen.ort) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'adressen.land) like "%'.$s.'%"
+        					OR lower('.$this->db->dbprefix.'adressen.name) like "%'.$s.'%"
+        					OR lower('.$this->db->dbprefix.'adressen.vorname) like "%'.$s.'%"
+        					OR lower('.$this->db->dbprefix.'adressen.firma) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'adressen.position) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'adressen.adresse_1) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'zusatzdaten.text) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'zusatzdaten.value) like "%'.$s.'%" 
+        					OR lower('.$this->db->dbprefix.'zusatzdaten.notiz) like "%'.$s.'%"
+        					
+        				)');
+        		}
+        		if($search['SA_ort'] != '')
+        		{
+        			// this function needs to be corrected from old
+        		}
+        		if($search['SA_erste_linie'] == '1')
+        		{
+        			$no_search = false;
+        			$this->db->where('sp.erste_linie ','0');
+        		}
+        		if($search['SA_SuchTyp'] != 'all')
+        		{
+        			$no_search = false;
+        			switch ($search['SA_SuchTyp'])
+        			{
+        				case -1:
+        					$this->db->where('kunde','1');
+        					break;
+        				case -2:
+        					$this->db->where('eigentuemer','1');
+        					break;
+        				default:
+        					$this->db->where('adressen.kontaktart',$search['SA_SuchTyp']);
+        					break;
+        			}
+        		}
+        		if($no_search)
+        		{
+        			$this->session->unset_userdata('advanced_search_filter');
+        		}
+        	}    
             $this->db->select('adressen.KDnr, adressen.status, adressen.name, adressen.vorname, adressen.ort, adressen.adresse_1, adressen.bewertung, sachbearbeiter.id_adresse');            
 			$this->db->from('adressen');
             $this->db->join('kontakt_formen', 'kontakt_formen.id_adresse = adressen.ID', 'left');
@@ -405,5 +580,37 @@ class Clients_model extends CI_Model {
         {
         	$this->db->where('id',$id);
         	return $this->db->get('kontakt_formen')->row();
+        }
+        public function get_me()
+        {
+        	$this->db->where('language' , $this->session->userdata('lang_id'));
+        	$z = $this->db->get('listfield')->result();
+        	/**
+        	var_dump($this->session->userdata('lang_id'));
+        	die;
+        	$KontaktArt[6] = LA("global_in_charge");
+        	$sql           = "SELECT row,value FROM listfield WHERE language = " . $_SESSION['USER_LANGUAGE_ID'] . "  AND name='ZusatzKontaktArten' ORDER BY SORT";
+        	//echo $sql;
+        	$res           = mysql_query($sql);
+        	if (IsRes($res))
+        	{
+        		while ($Z = mysql_fetch_array($res))
+        		{
+        			$t              = $Z['row'];
+        			$KontaktArt[$t] = $Z['value'];
+        		}
+        	}
+        	*/
+        }
+        public function get_adressen_by_kontaktart()
+        {
+        	$this->db->select("ID,concat_ws(',',name,vorname) as concated_name");
+        	$this->db->where('kontaktart','6');
+        	return $this->db->get('adressen')->result();
+        }
+        function get_anlagen()
+        {
+        	$this->db->order_by('name','asc');
+        	return $this->db->get('anlagen')->result();
         }
 }

@@ -3,6 +3,10 @@ defined('BASEPATH') or die('Restricted directy access');
 
 class Language_model extends CI_Model
 {
+	public function get_languages()
+	{
+		return $this->db->get('default_lang')->result();
+	}
 	function get_admin_translations($order_field='token',$sort_order='asc')
 	{
 		$this->db->order_by($order_field,$sort_order);

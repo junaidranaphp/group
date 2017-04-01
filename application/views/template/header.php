@@ -25,6 +25,8 @@
 <!-- Color CSS -->
 <link rel="stylesheet"
 	href="<?php echo base_url('assets/css/themes.css')?>">
+<link rel="stylesheet"
+	href="<?php echo base_url('assets/css/mystyle.css')?>">
 
 
 <!-- jQuery -->
@@ -87,39 +89,30 @@
 				<li><a href="index.html"> <span>Dashboard</span>
 				</a></li>
 				<li
-					<?php echo ($this->template->get_active_menu() == 'forms') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Forms</span>
+					<?php echo ($this->template->get_active_menu() == 'properties') ? 'class="active"' : ''?>>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Properties</span>
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li class='active'><a href="forms-basic.html">Basic forms</a></li>
-						<li><a href="forms-extended.html">Extended forms</a></li>
-						<li><a href="forms-validation.html">Validation</a></li>
-						<li><a href="forms-wizard.html">Wizard</a></li>
+						<li class='active'><a href="forms-basic.html">List Properties</a></li>
+						<li><a href="forms-extended.html">Advanced Search</a></li>
+						<li><a href="forms-validation.html">Add New</a></li>
 					</ul>
 				</li>
 				<li
-					<?php echo ($this->template->get_active_menu() == 'components') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Components</span>
+					<?php echo ($this->template->get_active_menu() == 'clients') ? 'class="active"' : ''?>>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Clients</span>
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="components-timeline.html">Timeline</a></li>
-						<li><a href="components-pagestatistics.html">Page statistics</a></li>
-						<li><a href="components-sidebarwidgets.html">Sidebar widgets</a></li>
-						<li><a href="components-messages.html">Messages &amp; Chat</a></li>
-						<li><a href="components-gallery.html">Gallery &amp; Thumbs</a></li>
-						<li><a href="components-tiles.html">Tiles</a></li>
-						<li><a href="components-icons.html">Icons &amp; Buttons</a></li>
-						<li><a href="components-elements.html">UI elements</a></li>
-						<li><a href="components-typography.html">Typography</a></li>
-						<li><a href="components-bootstrap.html">Bootstrap elements</a></li>
-						<li><a href="components-grid.html">Grid</a></li>
+						<li><a href="<?php echo base_url('clients')?>">All Clients</a></li>
+						<li><a href="<?php echo base_url('clients/advanced_search')?>">Advanced Search</a></li>
+						<li><a href="components-sidebarwidgets.html">Add New</a></li>
 					</ul>
 				</li>
 				<li
-					<?php echo ($this->template->get_active_menu() == 'Tables') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Tables</span>
+					<?php echo ($this->template->get_active_menu() == 'email') ? 'class="active"' : ''?>>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Email</span>
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
@@ -129,8 +122,8 @@
 					</ul>
 				</li>
 				<li
-					<?php echo ($this->template->get_active_menu() == 'plugins') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Plugins</span>
+					<?php echo ($this->template->get_active_menu() == 'tasks') ? 'class="active"' : ''?>>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Tasks</span>
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
@@ -145,8 +138,8 @@
 					</ul>
 				</li>
 				<li
-					<?php echo ($this->template->get_active_menu() == 'pages') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Pages</span>
+					<?php echo ($this->template->get_active_menu() == 'calendar') ? 'class="active"' : ''?>>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Calendar</span>
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
@@ -176,24 +169,18 @@
 					</ul>
 				</li>
 				<li
-					<?php echo ($this->template->get_active_menu() == 'Layouts') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Layouts</span>
+					<?php echo ($this->template->get_active_menu() == 'settings') ? 'class="active"' : ''?>>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Settings</span>
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="layouts-sidebar-hidden.html">Default hidden sidebar</a>
+						<li><a href="<?php echo base_url('manageusers')?>">User Manager</a>
 						</li>
-						<li><a href="layouts-sidebar-right.html">Sidebar right side</a></li>
-						<li><a href="layouts-color.html">Different default color</a></li>
-						<li><a href="layouts-fixed.html">Fixed layout</a></li>
-						<li><a href="layouts-fixed-topside.html">Fixed topbar and sidebar</a>
+						<li><a href="<?php echo base_url('locations')?>">Locations</a></li>
+						<li><a href="<?php echo base_url('residences')?>">Residences</a></li>
+						<li><a href="<?php echo base_url('listfield')?>">Listing Fields</a></li>
+						<li><a href="<?php echo base_url('language/admin_translations')?>">Language</a>
 						</li>
-						<li class='dropdown-submenu'><a href="#">Mobile sidebar</a>
-							<ul class="dropdown-menu">
-								<li><a href="layouts-mobile-slide.html">Slide</a></li>
-								<li><a href="layouts-mobile-button.html">Button</a></li>
-							</ul></li>
-						<li><a href="layouts-footer.html">Footer</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -309,4 +296,3 @@
 			</div>
 		</div>
 	</div>
-	

@@ -20,7 +20,7 @@
 				<ul class="subnav-menu">					
 					<?php
 					for ($i=1; $i < count($menu); $i++){
-						echo "<li><a href='{$menu[$i]['url']}'>{$menu[$i]['title']}</a>";
+						echo '<li><a href="'.base_url($menu[$i]['url']).'"> '.$menu[$i]['title'].'</a></li>';
 					}					
 					?>
 				</ul>

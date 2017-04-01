@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or die('Restricted direct access'); ?>
-
+		<br/>
 		<div class="row">
 			<div class="col-sm-12">
 				<?php if($this->session->flashdata('success_msg')) { ?>

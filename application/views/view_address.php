@@ -1,0 +1,10 @@
+<?php
+$this->load->view('clients/address');
+$this->load->view('clients/address_modal');
+$this->load->view('clients/data_modal');
+$this->load->view('clients/contact_modal');
+$this->load->view('clients/incharge_modal');
+$this->load->view('clients/search_profile_modal');
+$this->load->view('clients/task_modal');
+$this->load->view('clients/contacthistory_modal');
+$this->load->view('clients/javascript');

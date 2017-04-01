@@ -1,7 +1,3 @@
- <style type="text/css">
- .inner_table td {font-size: 16px;padding: 0 5px;}
- .alert {margin-top:10px;}
- </style>
 
 				<div class="row">
 					<div class="col-sm-12">
@@ -108,9 +104,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+			
 
 
 <script type="text/javascript">

@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') or die('Restricted direct access'); ?>
-
-
+		<br/>
 		<?php if($this->session->flashdata('success_msg')) { ?>
 			<div class="alert alert-success">
 				<?php echo $this->session->flashdata('success_msg'); ?>
@@ -135,5 +134,4 @@
 				<button class="btn btn-primary"><?php echo LTEXT('_submit')?></button>
 			</div>		
 		<?php echo form_close()?>
-	</div>
-</div>
+	

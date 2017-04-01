@@ -1,7 +1,5 @@
 
-				</div>
-			</div>
-		</div>
+				
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-38620714-4']);

@@ -6924,13 +6924,13 @@ label, input, button, select, textarea {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.table-pagination > a {
+.table-pagination > a, .table-pagination > strong {
   margin-right: 5px;
   background: #eee;
   padding: 3px 8px;
   color: #333;
   text-decoration: none;
-  cursor: pointer;
+  
 }
 .table-pagination > a.disabled {
   color: #999;
@@ -7217,6 +7217,7 @@ label, input, button, select, textarea {
   float: left;
   padding: 10px 15px;
   margin-right: 15px;
+  height: 61px;
 }
 .stats > li:after {
   content: "";
