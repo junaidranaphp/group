@@ -4,9 +4,9 @@ Class User extends CI_Model
     function login($username, $password) {
 
         $this->db->select();
-        $this->db->from('users');
-        $this->db->where('user', $username);
-        $this->db->where('password', MD5($password));
+        $this->db->from('usuarios');
+        $this->db->where('usuario_usuario', $username);
+        $this->db->where('usuario_clave', MD5($password));
         $this->db->limit(1);
 
         $query = $this->db->get();

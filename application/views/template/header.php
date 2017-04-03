@@ -290,7 +290,7 @@
 					<ul class="dropdown-menu pull-right">
 						<li><a href="more-userprofile.html">Edit profile</a></li>
 						<li><a href="#">Account settings</a></li>
-						<li><a href="more-login.html">Sign out</a></li>
+                                                <li><a href="<?php echo base_url('logout')?>">Sign out</a></li>
 					</ul>
 				</div>
 			</div>
