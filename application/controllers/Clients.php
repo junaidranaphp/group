@@ -26,7 +26,7 @@ class Clients extends CI_Controller {
 		$config['full_tag_close'] = "</div>";
 		$this->pagination->initialize($config);
 
-		$data['title'] = LTEXT('_global_addresses');		
+				
 		
 		if ( empty($this->input->post('sort-field'))){
 			$order_field = @$this->session->userdata['order-field'];
@@ -45,7 +45,7 @@ class Clients extends CI_Controller {
 		$this->db->order_by($order_field, $sort_order)->limit($config['per_page'], $this->uri->segment(3));			
 		//$data['records'] = $this->db->get();
 		
-		$header_data['title'] = LTEXT('_global_addresses');			
+					
 		
 		$data['records'] = $this->clients_model->get_addresses(); // get all
 		$data['session'] = $this->session->userdata;
@@ -147,8 +147,6 @@ class Clients extends CI_Controller {
 			}
 			
 		}
-		
-		
 		
 		$data['session'] = $this->session->userdata;
 		$data['address'] = $this->clients_model->get_address($id);
