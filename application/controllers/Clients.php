@@ -17,8 +17,10 @@ class Clients extends CI_Controller {
 
 	public function index()
 	{
+                $clients= $this->clients_model->get_clients();
 		$config['base_url'] =  base_url() . '/clients/index';
-		$config['total_rows'] = count($this->clients_model->get_addresses());
+             
+		$config['total_rows'] = count($clients);
 		
 		$config['per_page'] = 20;
 		$config['num_links'] = 5;
@@ -42,13 +44,13 @@ class Clients extends CI_Controller {
 		$this->session->userdata['order-field'] = $order_field;
 		$this->session->userdata['sort-order'] = $sort_order;
 
-		$this->db->order_by($order_field, $sort_order)->limit($config['per_page'], $this->uri->segment(3));			
+		//$this->db->order_by($order_field, $sort_order)->limit($config['per_page'], $this->uri->segment(3));			
 		//$data['records'] = $this->db->get();
 		
 					
 		
-		$data['records'] = $this->clients_model->get_addresses(); // get all
-		$data['session'] = $this->session->userdata;
+		$data['records'] = $clients; // get all
+		
 		
 	
 		$this->template->set_active_menu('clients')
