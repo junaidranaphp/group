@@ -5,10 +5,25 @@ class Clients_model extends CI_Model {
         {
             
         }
-        
+        public function insert_client($data){
+            return $this->db->insert('users',$data);
+        }
+        public function update_client($data,$id){
+            return $this->db->where('id',$id)
+            ->update('users',$data);
+        }
+        public function delete_client($id){
+            return $this->db->where('id',$id)
+            ->delete('users');
+        }
+
         public function get_clients()
         {
-            return $this->db->get('usuarios')->result();
+            return $this->db->get('users')->result();
+        }
+        public function get_client($id)
+        {
+            return$this->db->where('id',$id)->get('users')->row();
         }
         
         public function total()

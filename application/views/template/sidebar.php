@@ -17,7 +17,8 @@
 			</div>
 			<ul class="subnav-menu">
 				<li><a href="<?php echo base_url('clients')?>">All Clients</a></li>
-				<li><a href="<?php echo base_url('clients/advanced_search')?>">Advanced Search</a></li>
+                                <li><a href="<?php echo base_url('clients/advanced_search')?>">Advanced Search</a></li>
+                                <li><a href="<?php echo base_url('clients/add_client')?>">Add New</a></li>
 			</ul>
 		</div>
 	</div>
