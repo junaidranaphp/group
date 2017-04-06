@@ -86,103 +86,21 @@
 				class="fa fa-bars"></i>
 			</a>
 			<ul class='main-nav'>
-				<li><a href="index.html"> <span>Dashboard</span>
-				</a></li>
-				<li
-					<?php echo ($this->template->get_active_menu() == 'properties') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Properties</span>
-						<span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li class='active'><a href="forms-basic.html">List Properties</a></li>
-						<li><a href="forms-extended.html">Advanced Search</a></li>
-						<li><a href="forms-validation.html">Add New</a></li>
-					</ul>
-				</li>
-				<li
-					<?php echo ($this->template->get_active_menu() == 'clients') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Clients</span>
-						<span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="<?php echo base_url('clients')?>">All Clients</a></li>
-						<li><a href="<?php echo base_url('clients/advanced_search')?>">Advanced Search</a></li>
-                                                <li><a href="<?php echo base_url('clients/add_client')?>">Add New</a></li>
-					</ul>
-				</li>
-				<li
-					<?php echo ($this->template->get_active_menu() == 'email') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Email</span>
-						<span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="tables-basic.html">Basic tables</a></li>
-						<li><a href="tables-advanced.html">Advanced tables</a></li>
-						<li><a href="tables-large.html">Large tables</a></li>
-					</ul>
-				</li>
-				<li
-					<?php echo ($this->template->get_active_menu() == 'tasks') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Tasks</span>
-						<span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="plugins-charts.html">Charts</a></li>
-						<li><a href="plugins-calendar.html">Calendar</a></li>
-						<li><a href="plugins-filemanager.html">File manager</a></li>
-						<li><a href="plugins-filetrees.html">File trees</a></li>
-						<li><a href="plugins-elements.html">Editable elements</a></li>
-						<li><a href="plugins-maps.html">Maps</a></li>
-						<li><a href="plugins-dragdrop.html">Drag &amp; Drop widgets</a></li>
+				<li><a href="index.html"> <span>Dashboard</span></a></li>
+				<?php
+				//create the top menu from the menu config
+				foreach ($this->config->item('menu') as $key => $menu){							
+					echo "<li " . ( ($this->template->get_active_menu() == $key) ? 'class="active"' : '' ). ">" ;					
+					echo "<a href=\"".base_url()."{$menu[0]['url']}\" data-toggle=\"dropdown\" class=\"dropdown-toggle\"> <span>{$menu[0]['title']}</span><span class=\"caret\"></span></a>";
+					echo "<ul class=\"dropdown-menu\">";
+					for ($i = 1; $i < count($menu); $i++){
+						echo "<li " . ( ($this->template->get_active_submenu() == $menu[$i]['title']) ? 'class="active"' : '' ) . ">";
+						echo "<a href=\"".base_url()."{$menu[$i]['url']}\">{$menu[$i]['title']}</a></li>";
+					}
+					echo "</ul>";
 
-					</ul>
-				</li>
-				<li
-					<?php echo ($this->template->get_active_menu() == 'calendar') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Calendar</span>
-						<span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="more-error.html">Error pages</a></li>
-						<li class='dropdown-submenu'><a href="#" data-toggle="dropdown"
-							class='dropdown-toggle'>Shop</a>
-							<ul class="dropdown-menu">
-								<li><a href="more-shop-list.html">List view</a></li>
-								<li><a href="more-shop-product.html">Product view</a></li>
-							</ul></li>
-						<li><a href="more-pricing.html">Pricing tables</a></li>
-						<li><a href="more-faq.html">FAQ</a></li>
-						<li><a href="more-invoice.html">Invoice</a></li>
-						<li><a href="more-userprofile.html">User profile</a></li>
-						<li><a href="more-searchresults.html">Search results</a></li>
-						<li><a href="more-login.html">Login</a></li>
-						<li><a href="more-locked.html">Lock screen</a></li>
-						<li><a href="more-email.html">Email templates</a></li>
-						<li><a href="more-blank.html">Blank page</a></li>
-						<li class='dropdown-submenu'><a href="#" data-toggle="dropdown"
-							class='dropdown-toggle'>Blog</a>
-							<ul class="dropdown-menu">
-								<li><a href="more-blog-list.html">List big image</a></li>
-								<li><a href="more-blog-list-small.html">List small image</a></li>
-								<li><a href="more-blog-post.html">Post</a></li>
-							</ul></li>
-					</ul>
-				</li>
-				<li
-					<?php echo ($this->template->get_active_menu() == 'settings') ? 'class="active"' : ''?>>
-					<a href="#" data-toggle="dropdown" class='dropdown-toggle'> <span>Settings</span>
-						<span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="<?php echo base_url('manageusers')?>">User Manager</a>
-						</li>
-						<li><a href="<?php echo base_url('locations')?>">Locations</a></li>
-						<li><a href="<?php echo base_url('residences')?>">Residences</a></li>
-						<li><a href="<?php echo base_url('listfield')?>">Listing Fields</a></li>
-						<li><a href="<?php echo base_url('language/admin_translations')?>">Language</a>
-						</li>
-					</ul>
-				</li>
+				}
+				?>					
 			</ul>
 			<div class="user">
 				<ul class="icon-nav">
