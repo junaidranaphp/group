@@ -6,24 +6,24 @@ class Clients_model extends CI_Model {
             
         }
         public function insert_client($data){
-            return $this->db->insert('users',$data);
+            return $this->db->insert('usuarios',$data);
         }
         public function update_client($data,$id){
-            return $this->db->where('id',$id)
-            ->update('users',$data);
+            return $this->db->where('usuario_id',$id)
+            ->update('usuarios',$data);
         }
         public function delete_client($id){
-            return $this->db->where('id',$id)
-            ->delete('users');
+            return $this->db->where('usuario_id',$id)
+            ->delete('usuarios');
         }
 
         public function get_clients()
         {
-            return $this->db->get('users')->result();
+            return $this->db->get('usuarios')->result();
         }
         public function get_client($id)
         {
-            return$this->db->where('id',$id)->get('users')->row();
+            return$this->db->where('usuario_id',$id)->get('usuarios')->row();
         }
         
         public function total()

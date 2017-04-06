@@ -80,18 +80,21 @@ class Clients extends CI_Controller {
     }
 
     public function add_client() {
-        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[4]');
-        $this->form_validation->set_rules('user_name', 'User Name', 'trim|required|min_length[4]|is_unique[users.login]');
-        $this->form_validation->set_rules('password', 'password', 'trim|required|min_length[4]');
-        $this->form_validation->set_rules('email', 'email', 'trim|required|min_length[4]|is_unique[users.email]');
+       
+        $this->form_validation->set_rules('usuario_nombre', 'Name', 'trim|required|min_length[4]');
+        $this->form_validation->set_rules('usuario_usuario', 'User Name', 'trim|required|min_length[4]|is_unique[usuarios.usuario_usuario]');
+        $this->form_validation->set_rules('usuario_clave', 'password', 'trim|required|min_length[4]');
+        $this->form_validation->set_rules('usuario_email', 'email', 'trim|required|min_length[4]|is_unique[usuarios.usuario_email]');
         if ($this->form_validation->run() == true) {
-            $insert_data['name'] = trim(strip_tags($this->input->post('name')));
-            $insert_data['login'] = trim(strip_tags($this->input->post('user_name')));
-            $insert_data['company'] = trim(strip_tags($this->input->post('company')));
-            $insert_data['email'] = trim(strip_tags($this->input->post('email')));
-            $insert_data['phone'] = trim(strip_tags($this->input->post('phone_number')));
-            $insert_data['address'] = trim(strip_tags($this->input->post('address')));
-            $insert_data['password'] = trim(strip_tags($this->input->post('password')));
+            
+            $insert_data['usuario_nombre'] = trim(strip_tags($this->input->post('usuario_nombre')));
+            $insert_data['usuario_usuario'] = trim(strip_tags($this->input->post('usuario_usuario')));
+            $insert_data['usuario_empresa'] = trim(strip_tags($this->input->post('usuario_empresa')));
+            $insert_data['usuario_email'] = trim(strip_tags($this->input->post('usuario_email')));
+            $insert_data['usuario_telefono'] = trim(strip_tags($this->input->post('usuario_telefono')));
+            $insert_data['usuario_direccion'] = trim(strip_tags($this->input->post('usuario_direccion')));
+            $insert_data['usuario_clave'] = trim(strip_tags($this->input->post('usuario_clave')));
+            
             if ($this->clients_model->insert_client($insert_data)) {
                 $flash_data['content'] = 'Client has been created successfully';
                 $flash_data['type'] = 'success';
@@ -126,29 +129,31 @@ class Clients extends CI_Controller {
             redirect(base_url('clients'));
         } else {
 
-            if ($this->input->post('user_name') != $client->name) {
-                $is_unique = '|is_unique[users.name]';
+            if ($this->input->post('usuario_usuario') != $client->usuario_usuario) {
+                $is_unique = '|is_unique[usuario.usuario]';
             } else {
                 $is_unique = '';
             }
-            $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[4]');
-            $this->form_validation->set_rules('user_name', 'User Name', 'trim|required|min_length[4]|is_unique[users.login]');
-            $this->form_validation->set_rules('password', 'password', 'trim|required|min_length[4]');
-            $this->form_validation->set_rules('email', 'email', 'trim|required|min_length[4]|is_unique[users.email]');
-            
+            $this->form_validation->set_rules('usuario_nombre', 'Name', 'trim|required|min_length[4]');
+            $this->form_validation->set_rules('usuario_usuario', 'User Name', 'trim|required|min_length[4]');
+
+            $this->form_validation->set_rules('usuario_clave', 'password', 'trim|required|min_length[4]');
+            $this->form_validation->set_rules('usuario_email', 'email', 'trim|required|min_length[4]|is_unique[users.email]');
+
+
+
             if ($this->form_validation->run() == true) {
-               
-                $insert_data['name'] = trim(strip_tags($this->input->post('name')));
-                $insert_data['login'] = trim(strip_tags($this->input->post('user_name')));
-                $insert_data['company'] = trim(strip_tags($this->input->post('company')));
-                $insert_data['email'] = trim(strip_tags($this->input->post('email')));
-                $insert_data['phone'] = trim(strip_tags($this->input->post('phone_number')));
-                $insert_data['address'] = trim(strip_tags($this->input->post('address')));
-                $insert_data['password'] = trim(strip_tags($this->input->post('password')));
-                if ($this->clients_model->update_client($insert_data,$id)) {
+
+                $insert_data['usuario_nombre'] = trim(strip_tags($this->input->post('usuario_nombre')));
+                $insert_data['usuario_usuario'] = trim(strip_tags($this->input->post('usuario_usuario')));
+                $insert_data['usuario_empresa'] = trim(strip_tags($this->input->post('usuario_empresa')));
+                $insert_data['usuario_email'] = trim(strip_tags($this->input->post('usuario_email')));
+                $insert_data['usuario_telefono'] = trim(strip_tags($this->input->post('usuario_telefono')));
+                $insert_data['usuario_direccion'] = trim(strip_tags($this->input->post('usuario_direccion')));
+                $insert_data['usuario_clave'] = trim(strip_tags($this->input->post('usuario_clave')));
+                if ($this->clients_model->update_client($insert_data, $id)) {
                     $flash_data['content'] = 'Client has been updated successfully';
                     $flash_data['type'] = 'success';
-                    
                 } else {
                     $flash_data['content'] = 'Client could not be updated';
                     $flash_data['type'] = 'danger';
@@ -162,43 +167,38 @@ class Clients extends CI_Controller {
 
 
                 $this->template->set_active_menu('clients')
-                    ->set_active_submenu('All Clients')
-                    ->set_heading(LTEXT('_global_addresses'))
-                    ->set_page('clients/edit_client')
-                    ->show($data);
+                        ->set_active_submenu('All Clients')
+                        ->set_heading(LTEXT('_global_addresses'))
+                        ->set_page('clients/edit_client')
+                        ->show($data);
             }
         }
     }
-public function delete_client($id)
-    {
-        if($id==null || !($id>0))
-        {
-            $flash_data['content']    = 'Id is illegal or not present' ;
-            $flash_data['type']       = 'danger';
-            $this->session->set_flashdata('message',$flash_data);
+
+    public function delete_client($id) {
+        if ($id == null || !($id > 0)) {
+            $flash_data['content'] = 'Id is illegal or not present';
+            $flash_data['type'] = 'danger';
+            $this->session->set_flashdata('message', $flash_data);
             redirect(base_url('clients'));
-        }
-        else if( !($client = $this->clients_model->get_client($id)))
-        {
-            $flash_data['content']    = 'Id is not present' ;
-            $flash_data['type']       = 'danger';
-            $this->session->set_flashdata('message',$flash_data);
+        } else if (!($client = $this->clients_model->get_client($id))) {
+            $flash_data['content'] = 'Id is not present';
+            $flash_data['type'] = 'danger';
+            $this->session->set_flashdata('message', $flash_data);
             redirect(base_url('clients'));
-        }
-        else
-        {
-            if($this->clients_model->delete_client($id))
-            {
+        } else {
+            if ($this->clients_model->delete_client($id)) {
                 $flash_data['content'] = 'Client has been deleted successfully';
                 $flash_data['type'] = 'success';
-            } else{
-                    $flash_data['content']    = 'Client could not be deleted' ;
-                    $flash_data['type']       = 'danger';
-                }  
-            $this->session->set_flashdata('message',$flash_data);
+            } else {
+                $flash_data['content'] = 'Client could not be deleted';
+                $flash_data['type'] = 'danger';
+            }
+            $this->session->set_flashdata('message', $flash_data);
             redirect(base_url('clients'));
         }
     }
+
     public function address_name_check($str) {
         $name = strtolower($this->input->post('name'));
         $vorname = strtolower($this->input->post('vorname'));

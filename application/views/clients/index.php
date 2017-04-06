@@ -19,12 +19,12 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th><?php echo LTEXT('_user_no') ?><?php echo sorting('id') ?></th>
-                                <th><?php echo LTEXT('_user_name') ?><?php echo sorting('login') ?></th>
-                                <th><?php echo LTEXT('_company') ?><?php echo sorting('company') ?></th>
-                                <th><?php echo LTEXT('_email') ?><?php echo sorting('company') ?></th>
-                                <th><?php echo LTEXT('_phone') ?><?php echo sorting('company') ?></th>
-                                <th><?php echo LTEXT('_address') ?><?php echo sorting('company') ?></th>
+                                <th><?php echo LTEXT('_user_no') ?><?php echo sorting('usuario_id') ?></th>
+                                <th><?php echo LTEXT('_user_name') ?><?php echo sorting('usuario_usuario') ?></th>
+                                <th><?php echo LTEXT('_company') ?><?php echo sorting('usuario_empresa') ?></th>
+                                <th><?php echo LTEXT('_email') ?><?php echo sorting('usuario_email') ?></th>
+                                <th><?php echo LTEXT('_phone') ?><?php echo sorting('usuario_telefono') ?></th>
+                                <th><?php echo LTEXT('_address') ?><?php echo sorting('usuario_direccion') ?></th>
                                 
 
                             </tr>
@@ -35,19 +35,19 @@
                                     <td>
                                         <div class="action-group">
                                             <a
-                                                href="<?php echo base_url('clients/edit_client/' . $row->id) ?>"
+                                                href="<?php echo base_url('clients/edit_client/' . $row->usuario_id) ?>"
                                                 class="btn edit-additional-contact"> <i class="fa fa-edit"></i>
-                                            </a> <a href="<?php echo base_url('clients/delete_client/' . $row->id) ?>" class="btn remove-additional-contact"> <i
+                                            </a> <a href="<?php echo base_url('clients/delete_client/' . $row->usuario_id) ?>" class="btn remove-additional-contact"> <i
                                                     class="fa fa-times"></i>
                                             </a>
                                         </div>
                                     </td>
-                                    <td><?php echo $row->id; ?></td>
-                                    <td><?php echo $row->login; ?></td>
-                                    <td><?php echo $row->company; ?></td>
-                                    <td><?php echo $row->email; ?></td>
-                                    <td><?php echo $row->phone; ?></td>
-                                    <td><?php echo $row->address; ?></td>
+                                    <td><?php echo $row->usuario_id; ?></td>
+                                    <td><?php echo $row->usuario_usuario; ?></td>
+                                    <td><?php echo $row->usuario_empresa; ?></td>
+                                    <td><?php echo $row->usuario_email; ?></td>
+                                    <td><?php echo $row->usuario_telefono; ?></td>
+                                    <td><?php echo $row->usuario_direccion; ?></td>
                                     
                                 </tr>  
                             <?php } ?>
