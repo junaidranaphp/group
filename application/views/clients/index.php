@@ -11,7 +11,7 @@
     <div class="col-sm-12">
         <div class="box box-color box-bordered">
             <div class="box-title">
-                <h3><?php echo LTEXT('_clients_list') ?></h3>
+                <h3><?php echo LTEXT('_client_list') ?></h3>
             </div>
             <div class="box-content nopadding">
                 <form action="clients" id="form-clients" method="post">

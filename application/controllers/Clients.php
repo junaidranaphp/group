@@ -53,9 +53,9 @@ class Clients extends CI_Controller {
 
 
 
-        $this->template->set_active_menu('clients')
-                ->set_active_submenu('All Clients')
-                ->set_heading(LTEXT('_global_addresses'))
+        $this->template->set_active_menu(LTEXT('_clients'))
+                ->set_active_submenu('_all_clients')
+                ->set_heading(LTEXT('_all_clients'))
                 ->set_page('clients/index')
                 ->show($data);
     }
@@ -72,21 +72,21 @@ class Clients extends CI_Controller {
     }
 
     public function view_client() {
-        $this->template->set_active_menu('clients')
-                ->set_active_submenu('All Clients')
+        $this->template->set_active_menu(LTEXT('_clients'))
+                ->set_active_submenu(LTEXT('_all_clients'))
                 ->set_heading(LTEXT('_global_addresses'))
                 ->set_page('clients/edit_client')
                 ->show();
     }
 
     public function add_client() {
-       
+
         $this->form_validation->set_rules('usuario_nombre', 'Name', 'trim|required|min_length[4]');
         $this->form_validation->set_rules('usuario_usuario', 'User Name', 'trim|required|min_length[4]|is_unique[usuarios.usuario_usuario]');
         $this->form_validation->set_rules('usuario_clave', 'password', 'trim|required|min_length[4]');
         $this->form_validation->set_rules('usuario_email', 'email', 'trim|required|min_length[4]|is_unique[usuarios.usuario_email]');
+
         if ($this->form_validation->run() == true) {
-            
             $insert_data['usuario_nombre'] = trim(strip_tags($this->input->post('usuario_nombre')));
             $insert_data['usuario_usuario'] = trim(strip_tags($this->input->post('usuario_usuario')));
             $insert_data['usuario_empresa'] = trim(strip_tags($this->input->post('usuario_empresa')));
@@ -94,7 +94,10 @@ class Clients extends CI_Controller {
             $insert_data['usuario_telefono'] = trim(strip_tags($this->input->post('usuario_telefono')));
             $insert_data['usuario_direccion'] = trim(strip_tags($this->input->post('usuario_direccion')));
             $insert_data['usuario_clave'] = trim(strip_tags($this->input->post('usuario_clave')));
-            
+            $insert_data['usuario_idioma'] = trim(strip_tags($this->input->post('usuario_idioma')));
+            $insert_data['usuario_site'] = trim(strip_tags($this->input->post('usuario_site')));
+            $insert_data['usuario_tire_shipping_comment'] = trim(strip_tags($this->input->post('usuario_tire_shipping_comment')));
+            $insert_data['usuario_batery_shipping_comment'] = trim(strip_tags($this->input->post('usuario_batery_shipping_comment')));
             if ($this->clients_model->insert_client($insert_data)) {
                 $flash_data['content'] = 'Client has been created successfully';
                 $flash_data['type'] = 'success';
@@ -108,9 +111,9 @@ class Clients extends CI_Controller {
             $data['edit'] = FALSE;
 
             $data['page'] = 'clients/view_user';
-            $this->template->set_active_menu('clients')
-                    ->set_active_submenu('All Clients')
-                    ->set_heading(LTEXT('_global_addresses'))
+            $this->template->set_active_menu(LTEXT('_clients'))
+                    ->set_active_submenu(LTEXT('_add_clients'))
+                    ->set_heading(LTEXT('_add_client'))
                     ->set_page('clients/edit_client')
                     ->show($data);
         }
@@ -151,6 +154,10 @@ class Clients extends CI_Controller {
                 $insert_data['usuario_telefono'] = trim(strip_tags($this->input->post('usuario_telefono')));
                 $insert_data['usuario_direccion'] = trim(strip_tags($this->input->post('usuario_direccion')));
                 $insert_data['usuario_clave'] = trim(strip_tags($this->input->post('usuario_clave')));
+                $insert_data['usuario_idioma'] = trim(strip_tags($this->input->post('usuario_idioma')));
+                $insert_data['usuario_site'] = trim(strip_tags($this->input->post('usuario_site')));
+                $insert_data['usuario_tire_shipping_comment'] = trim(strip_tags($this->input->post('usuario_tire_shipping_comment')));
+                $insert_data['usuario_batery_shipping_comment'] = trim(strip_tags($this->input->post('usuario_batery_shipping_comment')));
                 if ($this->clients_model->update_client($insert_data, $id)) {
                     $flash_data['content'] = 'Client has been updated successfully';
                     $flash_data['type'] = 'success';
@@ -166,9 +173,9 @@ class Clients extends CI_Controller {
                 $data['edit'] = true;
 
 
-                $this->template->set_active_menu('clients')
-                        ->set_active_submenu('All Clients')
-                        ->set_heading(LTEXT('_global_addresses'))
+                $this->template->set_active_menu(LTEXT('_clients'))
+                        ->set_active_submenu(LTEXT('_edit_clients'))
+                        ->set_heading(LTEXT('_edit_client'))
                         ->set_page('clients/edit_client')
                         ->show($data);
             }

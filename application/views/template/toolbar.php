@@ -27,7 +27,7 @@
         </div>
         <div class="breadcrumbs form-group">
             <ul>
-                <li><a href="more-login.html">Home</a> <i
+                <li><a href="more-login.html"><?php echo LTEXT('_home')?></a> <i
                         class="fa fa-angle-right"></i></li>
                 <li><a href="#"><?php echo $this->template->get_active_menu() ?></a> <i
                         class="fa fa-angle-right"></i></li>

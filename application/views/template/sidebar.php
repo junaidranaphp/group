@@ -12,13 +12,13 @@
 		<div class="subnav">
 			<div class="subnav-title">
 				<a href="#" class='toggle-subnav'> <i class="fa fa-angle-down"></i>
-					<span>Clients</span>
+                                    <span><?php echo LTEXT('_clients')?></span>
 				</a>
 			</div>
 			<ul class="subnav-menu">
-				<li><a href="<?php echo base_url('clients')?>">All Clients</a></li>
-                                <li><a href="<?php echo base_url('clients/advanced_search')?>">Advanced Search</a></li>
-                                <li><a href="<?php echo base_url('clients/add_client')?>">Add New</a></li>
+                            <li><a href="<?php echo base_url('clients')?>"><?php echo LTEXT('_all_clients')?></a></li>
+                            <li><a href="<?php echo base_url('clients/advanced_search')?>"><?php echo LTEXT('_advanced_search')?></a></li>
+                            <li><a href="<?php echo base_url('clients/add_client')?>"><?php echo LTEXT('_add_new')?></a></li>
 			</ul>
 		</div>
 	</div>
