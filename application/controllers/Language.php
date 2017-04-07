@@ -12,6 +12,7 @@ class Language extends CI_Controller
 		}
 		$this->load->model('language_model');
 	}
+	
 	public function admin_translations()
 	{
 		if ($this->input->post('sort-field')){
@@ -25,6 +26,7 @@ class Language extends CI_Controller
 		$data['translations'] = $this->language_model->get_admin_translations($order_field,$sort_order);
 		$data['session'] = $this->session->userdata;		
 		$data['title'] = LTEXT('_admin_translations');			
+		$data['languages'] = $this->language_model->get_languages();
 		
 		$this->template->set_active_menu('settings')
 			->set_active_submenu('Language')
@@ -32,10 +34,12 @@ class Language extends CI_Controller
 			->set_page('language/admin_translations')
 			->show($data);
 	}
+	
 	public function add_admin_translation()
 	{
 		$this->edit_admin_translation('#new');
 	}
+	
 	public function valid_token($str)
 	{
 		if ( preg_match('/[\'^£$%&*()}{@#~?><>,| =+¬-]/', $str))
@@ -48,21 +52,23 @@ class Language extends CI_Controller
 			return TRUE;
 		}
 	}
-	public function delete_admin_translation($token)
+	
+	public function delete_admin_translation($id)
 	{
-		$token=trim($token);
-		if (!$token || $token== '')
+		
+		if (!$id || $id == '')
 		{
 			redirect(base_url('language/admin_translations'));
 		}
-		$this->language_model->delete_admin_translation($token);
+		$this->language_model->delete_admin_translation($id);
 		redirect(base_url('language/admin_translations'));
 	}
+	
 	public function edit_admin_translation($token)
 	{
-		$token = trim($token);
 		
-		if(!$token || $token=='')
+		$token = trim($token);		
+		if(!$token || $token == '')
 		{
 			redirect(base_url('language/admin_translations'));
 		}
@@ -79,15 +85,13 @@ class Language extends CI_Controller
 			/*
 			 * Setting validation rules
 			 */
-			$this->form_validation->set_rules('token', LTEXT('_token'), 'trim|required|is_unique[language_admin.token]|callback_valid_token');
-			$this->form_validation->set_rules('page', LTEXT('_page'), '');
+			$this->form_validation->set_rules('token', LTEXT('_token'), 'trim|required|is_unique[language_admin.token]|callback_valid_token');			
 			$this->form_validation->set_rules('en', LTEXT('_en'), '');
 			$this->form_validation->set_rules('es', LTEXT('_es'), '');
 			$this->form_validation->set_rules('de', LTEXT('_de'), '');
 			if ($this->form_validation->run() == true)
 			{
-				$translation_data['token'] = trim($this->input->post('token'));
-				$translation_data['page'] = trim($this->input->post('page'));
+				$translation_data['token'] = trim($this->input->post('token'));				
 				$translation_data['en'] = trim($this->input->post('en'));
 				$translation_data['es'] = trim($this->input->post('es'));
 				$translation_data['de'] = trim($this->input->post('de'));
@@ -122,15 +126,13 @@ class Language extends CI_Controller
 			} else{
 				$is_unique = '';
 			}
-			$this->form_validation->set_rules('token', LTEXT('_token'), 'trim|required|callback_valid_token'.$is_unique);
-			$this->form_validation->set_rules('en', LTEXT('_page'), '');
+			$this->form_validation->set_rules('token', LTEXT('_token'), 'trim|required|callback_valid_token'.$is_unique);			
 			$this->form_validation->set_rules('en', LTEXT('_en'), '');
 			$this->form_validation->set_rules('es', LTEXT('_es'), '');
 			$this->form_validation->set_rules('de', LTEXT('_de'), '');
 			if ($this->form_validation->run() == true)
 			{
-				$translation_data['token'] = trim($this->input->post('token'));
-				$translation_data['page'] = trim($this->input->post('page'));
+				$translation_data['token'] = trim($this->input->post('token'));				
 				$translation_data['en'] = trim($this->input->post('en'));
 				$translation_data['es'] = trim($this->input->post('es'));
 				$translation_data['de'] = trim($this->input->post('de'));

@@ -22,18 +22,17 @@
 							<table class="table table-hover table-nomargin table-bordered searchable">
 								<thead>
 									<tr>
-										<th><?php echo LTEXT('_sr_number')?></th>
-										<th><?php echo LTEXT('_token')?> <?php echo sorting('token')?></th>
-										<th><?php echo LTEXT('_page')?> <?php echo sorting('token')?></th>
-										<th>
+										<th width="10%"><?php echo LTEXT('_actions')?></th>										
+										<th width="35%"><?php echo LTEXT('_token')?> <?php echo sorting('token')?></th>										
+										<th width="55%">
 											<select class="form-control" id="select-language">
-												<option value="en"><?php echo LTEXT('_en')?></option>
-												<option value="es"><?php echo LTEXT('_es')?></option>
-												<option value="de"><?php echo LTEXT('_de')?></option>
+												<?php foreach( $languages as $lang){
+													echo "<option value=\"{$lang->code}\">{$lang->lang}</option>";
+												}
+												?>												
 											</select>
-											<?php echo sorting('en')?>
-										</th>
-										<th><?php echo LTEXT('_actions')?></th>
+											<?php echo sorting($languages[0]->code) ?>
+										</th>										
 									</tr>
 								</thead>
 							<tbody>
@@ -42,22 +41,21 @@
 								<?php foreach ($translations as $translation) {?>
 								<?php $counter++;?>
 								<tr>
-									<td><?php echo $counter?></td>
-									<td><?php echo $translation->token?></td>
-									<td><?php echo $translation->page?></td>
-									<td class="en"><?php echo $translation->en?></td>
-									<td class="es hide"><?php echo $translation->es?></td>
-									<td class="de hide"><?php echo $translation->de?></td>
 									<td>
 										<div class="action-group">
 											<a href="<?php echo base_url('language/edit_admin_translation/'.$translation->token)?>" class="btn" rel="tooltip" title="Edit">
 												<i class="fa fa-edit"></i>
 											</a>
-											<a href="<?php echo base_url('language/delete_admin_translation/'.$translation->token)?>" class="btn" rel="tooltip" title="Delete">
+											<a href="<?php echo base_url('language/delete_admin_translation/'.$translation->id)?>" class="btn" rel="tooltip" title="Delete">
 												<i class="fa fa-times"></i>
 											</a>
 										</div>
-									</td>
+									</td>									
+									<td><?php echo $translation->token?></td>									
+									<td class="en hide"><?php echo $translation->en?></td>
+									<td class="es hide"><?php echo $translation->es?></td>
+									<td class="de hide"><?php echo $translation->de?></td>
+									
 								</tr>
 								<?php } }else {?>
 								<tr>
@@ -97,11 +95,12 @@ $(document).ready(function () {
 		$('.'+language).removeClass('hide');
 		
 	});
-
+	language = $('#select-language').val();
+	$('.'+language).removeClass('hide');
+	
     (function ($) {
 
         $('#filter').keyup(function () {
-
             var rex = new RegExp($(this).val(), 'i');
             $('.searchable tbody tr').hide();
             $('.searchable tbody tr').filter(function () {

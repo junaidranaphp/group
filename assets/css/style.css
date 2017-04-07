@@ -4756,7 +4756,7 @@ label, input, button, select, textarea {
   position: absolute;
   left: 0;
   bottom: 0;
-  background: #eee;
+  background: #CBCBCB;
   height: 100%;
   overflow-x: visible;
 }

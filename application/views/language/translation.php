@@ -10,13 +10,7 @@
 									<input value="<?php echo set_value('token',$translation ? $translation->token: '')?>" type="text" id="token" name="token" class="form-control"/>
 									<span class="text-danger"><?php echo form_error('token'); ?></span>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="page" class="control-label col-sm-2"><?php echo LTEXT('_page')?></label>
-								<div class="col-sm-10">
-									<input value="<?php echo set_value('page',$translation ? $translation->page: '')?>" type="text" id="page" name="page" class="form-control"/>
-								</div>
-							</div>
+							</div>							
 							<div class="form-group">
 								<label for="en" class="control-label col-sm-2"><?php echo LTEXT('_en')?></label>
 								<div class="col-sm-10">
