@@ -1,4 +1,4 @@
-<?php $menu = getMenu('clients'); ?>
+<?php $menu = getLeftMenu('clients');?>
 
 	<div class="container-fluid" id="content">		
 		<div id="left">

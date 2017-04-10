@@ -18,9 +18,10 @@ class VerifyLogin extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             //Field validation failed.  User redirected to login page
-            $data['title'] = "Log into RedB";    
+            $data['title'] = "Log into RedB";
+            $this->load->view('template/header', $data);
             $this->load->view('login_view');
-            
+            $this->load->view('template/footer');
         } else {
             //Go to private area
             redirect('clients', 'refresh');

@@ -17,6 +17,7 @@ class Clients extends CI_Controller {
     }
 
     public function index() {
+
         $clients = $this->clients_model->get_clients();
         $config['base_url'] = base_url() . '/clients/index';
 
@@ -47,14 +48,9 @@ class Clients extends CI_Controller {
         //$this->db->order_by($order_field, $sort_order)->limit($config['per_page'], $this->uri->segment(3));			
         //$data['records'] = $this->db->get();
 
-
-
         $data['records'] = $clients; // get all
-
-
-
-        $this->template->set_active_menu(LTEXT('_clients'))
-                ->set_active_submenu('_all_clients')
+        $this->template->set_active_menu('clients')
+                ->set_active_submenu('clients')
                 ->set_heading(LTEXT('_all_clients'))
                 ->set_page('clients/index')
                 ->show($data);
@@ -72,8 +68,8 @@ class Clients extends CI_Controller {
     }
 
     public function view_client() {
-        $this->template->set_active_menu(LTEXT('_clients'))
-                ->set_active_submenu(LTEXT('_all_clients'))
+        $this->template->set_active_menu('clients')
+                ->set_active_submenu('clients')
                 ->set_heading(LTEXT('_global_addresses'))
                 ->set_page('clients/edit_client')
                 ->show();
@@ -111,8 +107,8 @@ class Clients extends CI_Controller {
             $data['edit'] = FALSE;
 
             $data['page'] = 'clients/view_user';
-            $this->template->set_active_menu(LTEXT('_clients'))
-                    ->set_active_submenu(LTEXT('_add_clients'))
+            $this->template->set_active_menu('clients')
+                    ->set_active_submenu('clients')
                     ->set_heading(LTEXT('_add_client'))
                     ->set_page('clients/edit_client')
                     ->show($data);
@@ -120,6 +116,7 @@ class Clients extends CI_Controller {
     }
 
     public function edit_client($id = null) {
+        
         if ($id == null || !($id > 0)) {
             $flash_data['content'] = 'Id is illegal or not present';
             $flash_data['type'] = 'danger';
@@ -173,8 +170,8 @@ class Clients extends CI_Controller {
                 $data['edit'] = true;
 
 
-                $this->template->set_active_menu(LTEXT('_clients'))
-                        ->set_active_submenu(LTEXT('_edit_clients'))
+                $this->template->set_active_menu('clients')
+                        ->set_active_submenu('clients')
                         ->set_heading(LTEXT('_edit_client'))
                         ->set_page('clients/edit_client')
                         ->show($data);

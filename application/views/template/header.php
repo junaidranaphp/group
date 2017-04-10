@@ -81,7 +81,7 @@
 <body>
 	<div id="navigation">
 		<div class="container-fluid">
-			<a href="#" id="brand">FLAT</a> <a href="#" class="toggle-nav"
+			<a href="#" id="brand">Team Group</a> <a href="#" class="toggle-nav"
 				rel="tooltip" data-placement="bottom" title="Toggle navigation"> <i
 				class="fa fa-bars"></i>
 			</a>
@@ -89,7 +89,7 @@
 				<li><a href="index.html"> <span>Dashboard</span></a></li>
 				<?php
 				//create the top menu from the menu config
-				foreach ($this->config->item('menu') as $key => $menu){							
+				foreach ($this->config->item('menu-'.$_SESSION['language']) as $key => $menu){					
 					echo "<li " . ( ($this->template->get_active_menu() == $key) ? 'class="active"' : '' ). ">" ;					
 					echo "<a href=\"".base_url()."{$menu[0]['url']}\" data-toggle=\"dropdown\" class=\"dropdown-toggle\"> <span>{$menu[0]['title']}</span><span class=\"caret\"></span></a>";
 					echo "<ul class=\"dropdown-menu\">";

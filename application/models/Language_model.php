@@ -16,6 +16,7 @@ class Language_model extends CI_Model
 	
 	function insert_admin_language($data)
 	{
+
 		$this->db->insert('language_admin',$data);
 	}
 	

@@ -3,7 +3,8 @@
 class Updates extends ADMIN_Controller{
     public function index(){
         echo md5('demouserEN');
-        $this->convert_passwords_to_md5();
+        var_dump(md5('demouserEN'));die;
+        //$this->convert_passwords_to_md5();
     }
     private function convert_passwords_to_md5(){
         $users = $this->db->get('usuarios')->result();

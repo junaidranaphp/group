@@ -31,7 +31,7 @@ class Language extends CI_Controller
 		$this->template->set_active_menu('settings')
 			->set_active_submenu('Language')
 			->set_heading(LTEXT('_admin_translations'))
-			->set_page('language/admin_translations')
+			->set_page('admin/language/admin_translations')
 			->show($data);
 	}
 	
@@ -58,10 +58,10 @@ class Language extends CI_Controller
 		
 		if (!$id || $id == '')
 		{
-			redirect(base_url('language/admin_translations'));
+			redirect(base_url('admin/language/admin_translations'));
 		}
 		$this->language_model->delete_admin_translation($id);
-		redirect(base_url('language/admin_translations'));
+		redirect(base_url('admin/language/admin_translations'));
 	}
 	
 	public function edit_admin_translation($token)
@@ -70,7 +70,7 @@ class Language extends CI_Controller
 		$token = trim($token);		
 		if(!$token || $token == '')
 		{
-			redirect(base_url('language/admin_translations'));
+			redirect(base_url('admin/language/admin_translations'));
 		}
 		if($token == '#new')
 		{
@@ -88,23 +88,25 @@ class Language extends CI_Controller
 			$this->form_validation->set_rules('token', LTEXT('_token'), 'trim|required|is_unique[language_admin.token]|callback_valid_token');			
 			$this->form_validation->set_rules('en', LTEXT('_en'), '');
 			$this->form_validation->set_rules('es', LTEXT('_es'), '');
-			$this->form_validation->set_rules('de', LTEXT('_de'), '');
+			$this->form_validation->set_rules('fr', LTEXT('_fr'), '');
+			$this->form_validation->set_rules('pt', LTEXT('_pt'), '');
 			if ($this->form_validation->run() == true)
 			{
 				$translation_data['token'] = trim($this->input->post('token'));				
 				$translation_data['en'] = trim($this->input->post('en'));
 				$translation_data['es'] = trim($this->input->post('es'));
-				$translation_data['de'] = trim($this->input->post('de'));
+				$translation_data['fr'] = trim($this->input->post('fr'));
+				$translation_data['pt'] = trim($this->input->post('pt'));
 				$this->language_model->insert_admin_language($translation_data);
 				$this->session->set_flashdata('success_msg','<strong> Success !</strong> New translation added successfully');
-				redirect(base_url('language/admin_translations'));
+				redirect(base_url('admin/language/admin_translations'));
 			}
 			else
 			{
 				$this->template->set_active_menu('settings')
 				->set_active_submenu('Language')
 				->set_heading(LTEXT('_add_translation'))
-				->set_page('language/translation')
+				->set_page('admin/language/translation')
 				->show($data);
 			}
 		}
@@ -129,23 +131,25 @@ class Language extends CI_Controller
 			$this->form_validation->set_rules('token', LTEXT('_token'), 'trim|required|callback_valid_token'.$is_unique);			
 			$this->form_validation->set_rules('en', LTEXT('_en'), '');
 			$this->form_validation->set_rules('es', LTEXT('_es'), '');
-			$this->form_validation->set_rules('de', LTEXT('_de'), '');
+			$this->form_validation->set_rules('fr', LTEXT('_fr'), '');
+			$this->form_validation->set_rules('pt', LTEXT('_pt'), '');
 			if ($this->form_validation->run() == true)
 			{
 				$translation_data['token'] = trim($this->input->post('token'));				
 				$translation_data['en'] = trim($this->input->post('en'));
 				$translation_data['es'] = trim($this->input->post('es'));
-				$translation_data['de'] = trim($this->input->post('de'));
+				$translation_data['fr'] = trim($this->input->post('fr'));
+				$translation_data['pt'] = trim($this->input->post('pt'));
 				$this->language_model->update_admin_language($translation_data,$token);
 				$this->session->set_flashdata('success_msg','<strong> Success !</strong> Translation edited successfully');
-				redirect(base_url('language/admin_translations'));
+				redirect(base_url('admin/language/admin_translations'));
 			}
 			else
 			{
 				$this->template->set_active_menu('settings')
 				->set_active_submenu('Language')
 				->set_heading(LTEXT('_edit_translation'))
-				->set_page('language/translation')
+				->set_page('admin/language/translation')
 				->show($data);
 			}
 		}

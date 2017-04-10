@@ -61,6 +61,12 @@ function getMenu($menu_group){
 	return $menu[$menu_group];
 	
 }
+
+function getLeftMenu($menu_group){
+	$menu = get_instance()->config->item('menuleft-' . $_SESSION['language']);	
+	return $menu[$menu_group];
+	
+}
 function printMenu($menu_group, $title_only = false){
 	$menu = getMenu($menu_group);
 	if ($title_only) {
