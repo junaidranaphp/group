@@ -25,63 +25,63 @@
                         </div>
                     </div>
                     <div class = "form-group">
-                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_user_name') ?></label>
+                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_product_grp') ?></label>
                         <div class = "col-sm-10">
-                            <input type = "text" value="<?php echo $edit ?  set_value('usuario_usuario',$client->usuario_usuario) :  set_value('usuario_usuario','')?>" name = "usuario_usuario" id = "textfield" placeholder = "<?php echo LTEXT('_user_name') ?>" class = "form-control">
+                            <input type = "text" value="<?php echo $edit ?  set_value('Product_Grp',$product->Product_Grp) :  set_value('Product_Grp','')?>" name = "Prod_Grp" id = "textfield" placeholder = "<?php echo LTEXT('_product_grp') ?>" class = "form-control">
                         </div>
                     </div>
                     <div class = "form-group">
-                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_company') ?></label>
+                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_rim') ?></label>
                         <div class = "col-sm-10">
-                            <input type = "text" name = "usuario_empresa" id = "textfield" placeholder = "<?php echo LTEXT('_company') ?>" class = "form-control">
+                            <input type = "text" name = "Rim" id = "textfield" placeholder = "<?php echo LTEXT('_rim') ?>" class = "form-control">
                         </div>
                     </div>
                     <div class = "form-group">
-                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_email') ?></label>
+                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_pattern_family') ?></label>
                         <div class = "col-sm-10">
-                            <input type = "email" name = "usuario_email" id = "textfield" placeholder = "<?php echo LTEXT('_email') ?>" class = "form-control">
+                            <input type = "text" name = "Pattern_Family" id = "textfield" placeholder = "<?php echo LTEXT('_pattern_family') ?>" class = "form-control">
                         </div>
                     </div>
                     <div class = "form-group">
-                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_phone_number') ?></label>
+                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_speed') ?></label>
                         <div class = "col-sm-10">
-                            <input type = "text" name = "usuario_telefono" id = "textfield" placeholder = "<?php echo LTEXT('_phone_number') ?>" class = "form-control">
+                            <input type = "text" name = "Speed" id = "textfield" placeholder = "<?php echo LTEXT('_speed') ?>" class = "form-control">
                         </div>
                     </div>
                     <div class = "form-group">
-                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_address') ?></label>
+                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_type') ?></label>
                         <div class = "col-sm-10">
-                            <input type = "text" name = "usuario_direccion" id = "textfield" placeholder = "<?php echo LTEXT('_address') ?>" class = "form-control">
+                            <input type = "text" name = "Type" id = "textfield" placeholder = "<?php echo LTEXT('_type') ?>" class = "form-control">
                         </div>
                     </div>
                     <div class = "form-group">
-                        <label for = "password" class = "control-label col-sm-2"><?php echo LTEXT('_password') ?></label>
+                        <label for = "password" class = "control-label col-sm-2"><?php echo LTEXT('_tubed_tubeless') ?></label>
                         <div class = "col-sm-10">
-                            <input type = "password" name = "usuario_clave" id = "password" placeholder = "<?php echo LTEXT('_password') ?>" class = "form-control">
+                            <input type = "text" name = "Tubed_Tubeless" id = "password" placeholder = "<?php echo LTEXT('_tubed_tubeless') ?>" class = "form-control">
                         </div>
                     </div>
                     <div class = "form-group">
-                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_language') ?></label>
+                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_stock') ?></label>
                         <div class = "col-sm-10">
-                            <input type = "text" name = "usuario_idioma" id = "textfield" placeholder = "<?php echo LTEXT('_language') ?>" class = "form-control">
+                            <input type = "text" name = "Stock" id = "textfield" placeholder = "<?php echo LTEXT('_stock') ?>" class = "form-control">
                         </div>
                     </div>
                     <div class = "form-group">
-                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_usuario_site') ?></label>
+                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_source') ?></label>
                         <div class = "col-sm-10">
-                            <input type = "text" name = "usuario_site" id = "textfield" placeholder = "<?php echo LTEXT('_usuario_site') ?>" class = "form-control">
+                            <input type = "text" name = "Source" id = "textfield" placeholder = "<?php echo LTEXT('_source') ?>" class = "form-control">
                         </div>
                     </div>
                     <div class = "form-group">
-                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_usuario_tire_shipping_comment') ?></label>
+                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_price_fob') ?></label>
                         <div class = "col-sm-10">
-                            <input type = "text" name = "_usuario_tire_shipping_comment" id = "textfield" placeholder = "<?php echo LTEXT('_usuario_tire_shipping_comment') ?>" class = "form-control">
+                            <input type = "text" name = "CCT_Price_FOB_2004_Rounded" id = "textfield" placeholder = "<?php echo LTEXT('_price_fob') ?>" class = "form-control">
                         </div>
                     </div>
                     <div class = "form-group">
-                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_usuario_batery_shipping_comment') ?></label>
+                        <label for = "textfield" class = "control-label col-sm-2"><?php echo LTEXT('_list_price') ?></label>
                         <div class = "col-sm-10">
-                            <input type = "text" name = "_usuario_batery_shipping_comment" id = "textfield" placeholder = "<?php echo LTEXT('_usuario_batery_shipping_comment') ?>" class = "form-control">
+                            <input type = "text" name = "Net_Price" id = "textfield" placeholder = "<?php echo LTEXT('_list_price') ?>" class = "form-control">
                         </div>
                     </div>
                     <div class = "form-actions col-sm-offset-2 col-sm-10">

@@ -67,40 +67,40 @@ class Products extends CI_Controller {
 
     public function add_product() {
 
-        $this->form_validation->set_rules('usuario_nombre', 'Name', 'trim|required|min_length[4]');
-        $this->form_validation->set_rules('usuario_usuario', 'User Name', 'trim|required|min_length[4]|is_unique[usuarios.usuario_usuario]');
-        $this->form_validation->set_rules('usuario_clave', 'password', 'trim|required|min_length[4]');
-        $this->form_validation->set_rules('usuario_email', 'email', 'trim|required|min_length[4]|is_unique[usuarios.usuario_email]');
+        $this->form_validation->set_rules('Code', 'code', 'trim|required');
+        $this->form_validation->set_rules('Prod_Grp', 'product_grp', 'trim|required');
+        $this->form_validation->set_rules('Rim', 'rim', 'trim|required');
+        $this->form_validation->set_rules('Speed', 'speed', 'trim|required');
 
         if ($this->form_validation->run() == true) {
-            $insert_data['usuario_nombre'] = trim(strip_tags($this->input->post('usuario_nombre')));
-            $insert_data['usuario_usuario'] = trim(strip_tags($this->input->post('usuario_usuario')));
-            $insert_data['usuario_empresa'] = trim(strip_tags($this->input->post('usuario_empresa')));
-            $insert_data['usuario_email'] = trim(strip_tags($this->input->post('usuario_email')));
-            $insert_data['usuario_telefono'] = trim(strip_tags($this->input->post('usuario_telefono')));
-            $insert_data['usuario_direccion'] = trim(strip_tags($this->input->post('usuario_direccion')));
-            $insert_data['usuario_clave'] = trim(strip_tags($this->input->post('usuario_clave')));
-            $insert_data['usuario_idioma'] = trim(strip_tags($this->input->post('usuario_idioma')));
-            $insert_data['usuario_site'] = trim(strip_tags($this->input->post('usuario_site')));
-            $insert_data['usuario_tire_shipping_comment'] = trim(strip_tags($this->input->post('usuario_tire_shipping_comment')));
-            $insert_data['usuario_batery_shipping_comment'] = trim(strip_tags($this->input->post('usuario_batery_shipping_comment')));
-            if ($this->clients_model->insert_client($insert_data)) {
-                $flash_data['content'] = 'Client has been created successfully';
+            $insert_data['Code'] = trim(strip_tags($this->input->post('Code')));
+            $insert_data['Prod_Grp'] = trim(strip_tags($this->input->post('Prod_Grp')));
+            $insert_data['Rim'] = trim(strip_tags($this->input->post('Rim')));
+            $insert_data['Pattern_Family'] = trim(strip_tags($this->input->post('Pattern_Family')));
+            $insert_data['Speed'] = trim(strip_tags($this->input->post('Speed')));
+            $insert_data['Type'] = trim(strip_tags($this->input->post('Type')));
+            $insert_data['Tubed_Tubeless'] = trim(strip_tags($this->input->post('Tubed_Tubeless')));
+            $insert_data['Stock'] = trim(strip_tags($this->input->post('Stock')));
+            $insert_data['Source'] = trim(strip_tags($this->input->post('Source')));
+            $insert_data['CCT_Price_FOB_2004_Rounded'] = trim(strip_tags($this->input->post('CCT_Price_FOB_2004_Rounded')));
+            $insert_data['Net_Price'] = trim(strip_tags($this->input->post('Net_Price')));
+            if ($this->products_model->insert_product($insert_data)) {
+                $flash_data['content'] = 'Product has been created successfully';
                 $flash_data['type'] = 'success';
             } else {
-                $flash_data['content'] = 'Client could not be created';
+                $flash_data['content'] = 'Product could not be created';
                 $flash_data['type'] = 'danger';
             }
             $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('clients'));
+            redirect(base_url('products'));
         } else {
             $data['edit'] = FALSE;
 
             $data['page'] = 'clients/view_user';
-            $this->template->set_active_menu('clients')
-                    ->set_active_submenu('clients')
-                    ->set_heading(LTEXT('_add_client'))
-                    ->set_page('clients/edit_client')
+            $this->template->set_active_menu('products')
+                    ->set_active_submenu('products')
+                    ->set_heading(LTEXT('_add_product'))
+                    ->set_page('products/edit_product')
                     ->show($data);
         }
     }
