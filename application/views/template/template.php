@@ -6,6 +6,9 @@ switch ($this->template->get_active_menu()){
     case "settings":
         $this->load->view('template/sidebar');
         break;
+    case "products":
+        $this->load->view('template/sidebar');
+        break;
     case "clients":
         $this->load->view('includes/menu_left_clients');
         break;

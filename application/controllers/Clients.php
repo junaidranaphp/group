@@ -27,6 +27,7 @@ class Clients extends CI_Controller {
         $config['num_links'] = 5;
         $config['full_tag_open'] = '<div class="table-pagination">';
         $config['full_tag_close'] = "</div>";
+        
         $this->pagination->initialize($config);
 
 
