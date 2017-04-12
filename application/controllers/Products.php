@@ -3,19 +3,19 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Products extends CI_Controller {
+class Products extends ADMIN_Controller {
 
     public function __construct() {
         parent::__construct();
         $this->load->model('products_model');
     }
 
-    public function index($page=0) {
+    public function index($page = 0) {
         $url = base_url() . '/products/index';
-        $rows= $this->products_model->record_count() ;
+        $rows = $this->products_model->record_count();
         $per_page = 25;
         $this->pagination->initialize(get_pagination_config($url, $rows, $per_page));
-        
+
 
 
         if (empty($this->input->post('sort-field'))) {
@@ -33,7 +33,7 @@ class Products extends CI_Controller {
         $this->session->userdata['sort-order'] = $sort_order;
 
 
-        $data['records'] = $this->products_model->get_products($per_page, $page,$sort_field,$sort_order);
+        $data['records'] = $this->products_model->get_products($per_page, $page, $sort_field, $sort_order);
         $this->template->set_active_menu('products')
                 ->set_active_submenu('products')
                 ->set_heading(LTEXT('_products'))
@@ -68,9 +68,9 @@ class Products extends CI_Controller {
     public function add_product() {
 
         $this->form_validation->set_rules('Code', 'code', 'trim|required');
-        $this->form_validation->set_rules('Prod_Grp', 'product_grp', 'trim|required');
-        $this->form_validation->set_rules('Rim', 'rim', 'trim|required');
-        $this->form_validation->set_rules('Speed', 'speed', 'trim|required');
+        $this->form_validation->set_rules('Prod_Grp', 'product_grp', 'trim');
+        $this->form_validation->set_rules('Rim', 'rim', 'trim');
+        $this->form_validation->set_rules('Speed', 'speed', 'trim');
 
         if ($this->form_validation->run() == true) {
             $insert_data['Code'] = trim(strip_tags($this->input->post('Code')));
@@ -105,65 +105,58 @@ class Products extends CI_Controller {
         }
     }
 
-    public function edit_products($id = null) {
+    public function edit_product($id = null) {
 
         if ($id == null || !($id > 0)) {
             $flash_data['content'] = 'Id is illegal or not present';
             $flash_data['type'] = 'danger';
             $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('clients'));
-        } else if (!($client = $this->products_model->get_products($id))) {
+            redirect(base_url('products'));
+        } else if (!($product = $this->products_model->get_product($id))) {
             $flash_data['content'] = 'Id is not present';
             $flash_data['type'] = 'danger';
             $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('product'));
+            redirect(base_url('products'));
         } else {
 
-            if ($this->input->post('usuario_usuario') != $client->usuario_usuario) {
-                $is_unique = '|is_unique[usuario.usuario]';
-            } else {
-                $is_unique = '';
-            }
-            $this->form_validation->set_rules('usuario_nombre', 'Name', 'trim|required|min_length[4]');
-            $this->form_validation->set_rules('usuario_usuario', 'User Name', 'trim|required|min_length[4]');
-
-            $this->form_validation->set_rules('usuario_clave', 'password', 'trim|required|min_length[4]');
-            $this->form_validation->set_rules('usuario_email', 'email', 'trim|required|min_length[4]|is_unique[users.email]');
-
-
+            $this->form_validation->set_rules('Code', 'code', 'trim|required');
+            $this->form_validation->set_rules('Prod_Grp', 'product_grp', 'trim');
+            $this->form_validation->set_rules('Rim', 'rim', 'trim');
+            $this->form_validation->set_rules('Speed', 'speed', 'trim');
 
             if ($this->form_validation->run() == true) {
 
-                $insert_data['usuario_nombre'] = trim(strip_tags($this->input->post('usuario_nombre')));
-                $insert_data['usuario_usuario'] = trim(strip_tags($this->input->post('usuario_usuario')));
-                $insert_data['usuario_empresa'] = trim(strip_tags($this->input->post('usuario_empresa')));
-                $insert_data['usuario_email'] = trim(strip_tags($this->input->post('usuario_email')));
-                $insert_data['usuario_telefono'] = trim(strip_tags($this->input->post('usuario_telefono')));
-                $insert_data['usuario_direccion'] = trim(strip_tags($this->input->post('usuario_direccion')));
-                $insert_data['usuario_clave'] = trim(strip_tags($this->input->post('usuario_clave')));
-                $insert_data['usuario_idioma'] = trim(strip_tags($this->input->post('usuario_idioma')));
-                $insert_data['usuario_site'] = trim(strip_tags($this->input->post('usuario_site')));
-                $insert_data['usuario_tire_shipping_comment'] = trim(strip_tags($this->input->post('usuario_tire_shipping_comment')));
-                $insert_data['usuario_batery_shipping_comment'] = trim(strip_tags($this->input->post('usuario_batery_shipping_comment')));
-                if ($this->clients_model->update_client($insert_data, $id)) {
-                    $flash_data['content'] = 'Client has been updated successfully';
+                $insert_data['Code'] = trim(strip_tags($this->input->post('Code')));
+                $insert_data['Prod_Grp'] = trim(strip_tags($this->input->post('Prod_Grp')));
+                $insert_data['Rim'] = trim(strip_tags($this->input->post('Rim')));
+                $insert_data['Pattern_Family'] = trim(strip_tags($this->input->post('Pattern_Family')));
+                $insert_data['Speed'] = trim(strip_tags($this->input->post('Speed')));
+                $insert_data['Type'] = trim(strip_tags($this->input->post('Type')));
+                $insert_data['Tubed_Tubeless'] = trim(strip_tags($this->input->post('Tubed_Tubeless')));
+                $insert_data['Stock'] = trim(strip_tags($this->input->post('Stock')));
+                $insert_data['Source'] = trim(strip_tags($this->input->post('Source')));
+                $insert_data['CCT_Price_FOB_2004_Rounded'] = trim(strip_tags($this->input->post('CCT_Price_FOB_2004_Rounded')));
+                $insert_data['Net_Price'] = trim(strip_tags($this->input->post('Net_Price')));
+
+                if ($this->products_model->update_product($insert_data, $id)) {
+                    $flash_data['content'] = 'product has been updated successfully';
                     $flash_data['type'] = 'success';
                 } else {
-                    $flash_data['content'] = 'Client could not be updated';
+                    $flash_data['content'] = 'product could not be updated';
                     $flash_data['type'] = 'danger';
                 }
                 $this->session->set_flashdata('message', $flash_data);
-                redirect(base_url('clients'));
+                redirect(base_url('products'));
             } else {
 
-                $data['product'] = $client;
+                $data['product'] = $product;
                 $data['edit'] = true;
 
 
                 $this->template->set_active_menu('products')
                         ->set_active_submenu('products')
                         ->set_heading(LTEXT('_edit_products'))
-                        ->set_page('products/edit_products')
+                        ->set_page('products/edit_product')
                         ->show($data);
             }
         }
