@@ -51,13 +51,8 @@
                                 <td><?php echo $row->CCT_Price_FOB_2004_Rounded; ?></td>
                                 <td><?php echo $row->Net_Price; ?></td>
                                 <td><?php echo '' ?></td>
-
-
-
-                            </tr>  
-
+                            </tr> 
                         <?php } ?>
-
                     </tbody>
                 </table>
                 <div class="pull-right">

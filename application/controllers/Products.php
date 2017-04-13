@@ -47,7 +47,7 @@ class Products extends ADMIN_Controller {
             $flash_data['type'] = 'danger';
             $this->session->set_flashdata('message', $flash_data);
             redirect(base_url('products'));
-        } else if (!($client = $this->products_model->get_products($id))) {
+        } else if (!($client = $this->products_model->get_product($id))) {
             $flash_data['content'] = 'Id is not present';
             $flash_data['type'] = 'danger';
             $this->session->set_flashdata('message', $flash_data);
@@ -96,7 +96,6 @@ class Products extends ADMIN_Controller {
         } else {
             $data['edit'] = FALSE;
 
-            $data['page'] = 'clients/view_user';
             $this->template->set_active_menu('products')
                     ->set_active_submenu('products')
                     ->set_heading(LTEXT('_add_product'))
