@@ -41,27 +41,38 @@ class Products extends ADMIN_Controller {
                 ->show($data);
     }
 
-    public function delete_product($id) {
-        if ($id == null || !($id > 0)) {
-            $flash_data['content'] = 'Id is illegal or not present';
-            $flash_data['type'] = 'danger';
-            $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('products'));
-        } else if (!($client = $this->products_model->get_product($id))) {
-            $flash_data['content'] = 'Id is not present';
-            $flash_data['type'] = 'danger';
-            $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('products'));
-        } else {
+    public function delete_product($id = null) {
+        $this->form_validation->set_rules('id', 'ID', 'trim|required');
+        if ($this->form_validation->run() == TRUE) {
+            $id = $this->input->post('id');
             if ($this->products_model->delete_product($id)) {
-                $flash_data['content'] = 'Client has been deleted successfully';
+                $flash_data['content'] = 'Product has been deleted successfully';
                 $flash_data['type'] = 'success';
             } else {
-                $flash_data['content'] = 'Client could not be deleted';
+                $flash_data['content'] = 'Product could not be deleted';
                 $flash_data['type'] = 'danger';
             }
             $this->session->set_flashdata('message', $flash_data);
             redirect(base_url('products'));
+        } else {
+            if ($id == null || !($id > 0)) {
+                $flash_data['content'] = 'Id is illegal or not present';
+                $flash_data['type'] = 'danger';
+                $this->session->set_flashdata('message', $flash_data);
+                redirect(base_url('products'));
+            } else if (!($product = $this->products_model->get_product($id))) {
+                $flash_data['content'] = 'Id is not present';
+                $flash_data['type'] = 'danger';
+                $this->session->set_flashdata('message', $flash_data);
+                redirect(base_url('products'));
+            } else {
+                $data['product'] = $product;
+                $this->template->set_active_menu('products')
+                        ->set_active_submenu('products')
+                        ->set_heading(LTEXT('_products'))
+                        ->set_page('products/confirm_delete')
+                        ->show($data);
+            }
         }
     }
 
