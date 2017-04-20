@@ -4,7 +4,7 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong><?php echo LTEXT('_message') ?> ! </strong><?php echo LTEXT('_advanced_search_is_on') ?>
         <a class="btn btn-primary btn-small"
-           href="<?php echo base_url('clients/reset_search') ?>"><?php echo LTEXT('_reset_search') ?></a>
+           href="<?php echo base_url('admin/clients/reset_search') ?>"><?php echo LTEXT('_reset_search') ?></a>
     </div>
 <?php } ?>
 <div class="row">
@@ -14,12 +14,12 @@
                 <h3><?php echo LTEXT('_client_list') ?></h3>
             </div>
             <div class="box-content nopadding">
-                <form action="clients" id="form-clients" method="post">
+                <form action="clients" id="form-sort" method="post">
                     <table class="table table-hover table-nomargin table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th><?php echo LTEXT('_user_no') ?><?php echo sorting('usuario_id') ?></th>
+                                <th><?php echo LTEXT('_user_id') ?><?php echo sorting('usuario_id') ?></th>
                                 <th><?php echo LTEXT('_user_name') ?><?php echo sorting('usuario_usuario') ?></th>
                                 <th><?php echo LTEXT('_company') ?><?php echo sorting('usuario_empresa') ?></th>
                                 <th><?php echo LTEXT('_email') ?><?php echo sorting('usuario_email') ?></th>
@@ -35,9 +35,9 @@
                                     <td>
                                         <div class="action-group">
                                             <a
-                                                href="<?php echo base_url('clients/edit_client/' . $row->usuario_id) ?>"
+                                                href="<?php echo base_url('admin/clients/edit_client/' . $row->usuario_id) ?>"
                                                 class="btn edit-additional-contact"> <i class="fa fa-edit"></i>
-                                            </a> <a href="<?php echo base_url('clients/delete_client/' . $row->usuario_id) ?>" class="btn remove-additional-contact"> <i
+                                            </a> <a href="<?php echo base_url('admin/clients/delete_client/' . $row->usuario_id) ?>" class="btn remove-additional-contact"> <i
                                                     class="fa fa-times"></i>
                                             </a>
                                         </div>
@@ -56,7 +56,9 @@
                     <input type="hidden" value="" id="sort-order" name="sort-order" />
                     <input type="hidden" value="" id="sort-field" name="sort-field" />
                 </form>
-                <?php echo $this->pagination->create_links(); ?>
+                <div class="pull-right">
+                    <?php echo $this->pagination->create_links(); ?>
+                </div>
 
             </div>
         </div>
@@ -65,10 +67,11 @@
 <script>
     // A $( document ).ready() block.
     $(document).ready(function () {
-        $(".fa-caret-up, .fa-caret-down").bind("click", function () {
+        
+        $(".fa-caret-up, .fa-caret-down").click( function () {
             $('#sort-field').val($(this).data('field'));
             $('#sort-order').val($(this).data('sort'));
-            $('#form-clients').submit();
+            $('#form-sort').submit();
         });
     });
 </script>

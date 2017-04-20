@@ -16,40 +16,20 @@ class Clients extends CI_Controller {
         }
     }
 
-    public function index() {
+    public function index($page = 0) {
 
-        $clients = $this->clients_model->get_clients();
-        $config['base_url'] = base_url() . '/clients/index';
-
-        $config['total_rows'] = count($clients);
-
-        $config['per_page'] = 20;
-        $config['num_links'] = 5;
-        $config['full_tag_open'] = '<div class="table-pagination">';
-        $config['full_tag_close'] = "</div>";
-        
-        $this->pagination->initialize($config);
+        $url = base_url() . 'admin/clients/index';
+        $rows = $this->clients_model->record_count();
+        $per_page = 25;
+        $this->pagination->initialize(get_pagination_config($url, $rows, $per_page));
 
 
+        $user_pref = get_sorting_preferences('clients', 'usuario_id', 'desc');
 
-        if (empty($this->input->post('sort-field'))) {
-            $order_field = @$this->session->userdata['order-field'];
-            $sort_order = @$this->session->userdata['sort-order'];
-        } else {
-            $order_field = @$this->input->post('sort-field');
-            $sort_order = @$this->input->post('sort-order');
-        }
-        if (empty($order_field)) {
-            $order_field = "name";
-            $sort_order = "desc";
-        }
-        $this->session->userdata['order-field'] = $order_field;
-        $this->session->userdata['sort-order'] = $sort_order;
-
-        //$this->db->order_by($order_field, $sort_order)->limit($config['per_page'], $this->uri->segment(3));			
+        //$this->db->order_by($sort_field, $sort_order)->limit($per_page, $this->uri->segment(3));			
         //$data['records'] = $this->db->get();
-
-        $data['records'] = $clients; // get all
+        $data['records'] = $this->clients_model->get_sorting_cleints($per_page, $page, $user_pref['sort_field'], $user_pref['sort_order']);
+      
         $this->template->set_active_menu('clients')
                 ->set_active_submenu('clients')
                 ->set_heading(LTEXT('_all_clients'))
@@ -103,7 +83,7 @@ class Clients extends CI_Controller {
                 $flash_data['type'] = 'danger';
             }
             $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('clients'));
+            redirect(base_url('admin'));
         } else {
             $data['edit'] = FALSE;
 
@@ -117,17 +97,17 @@ class Clients extends CI_Controller {
     }
 
     public function edit_client($id = null) {
-        
+
         if ($id == null || !($id > 0)) {
             $flash_data['content'] = 'Id is illegal or not present';
             $flash_data['type'] = 'danger';
             $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('clients'));
+            redirect(base_url('admin'));
         } else if (!($client = $this->clients_model->get_client($id))) {
             $flash_data['content'] = 'Id is not present';
             $flash_data['type'] = 'danger';
             $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('clients'));
+            redirect(base_url('admin'));
         } else {
 
             if ($this->input->post('usuario_usuario') != $client->usuario_usuario) {
@@ -164,7 +144,7 @@ class Clients extends CI_Controller {
                     $flash_data['type'] = 'danger';
                 }
                 $this->session->set_flashdata('message', $flash_data);
-                redirect(base_url('clients'));
+                redirect(base_url('admin'));
             } else {
 
                 $data['client'] = $client;
@@ -185,12 +165,12 @@ class Clients extends CI_Controller {
             $flash_data['content'] = 'Id is illegal or not present';
             $flash_data['type'] = 'danger';
             $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('clients'));
+            redirect(base_url('admin'));
         } else if (!($client = $this->clients_model->get_client($id))) {
             $flash_data['content'] = 'Id is not present';
             $flash_data['type'] = 'danger';
             $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('clients'));
+            redirect(base_url('admin'));
         } else {
             if ($this->clients_model->delete_client($id)) {
                 $flash_data['content'] = 'Client has been deleted successfully';
@@ -200,7 +180,7 @@ class Clients extends CI_Controller {
                 $flash_data['type'] = 'danger';
             }
             $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('clients'));
+            redirect(base_url('admin'));
         }
     }
 

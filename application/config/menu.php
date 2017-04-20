@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //EN menu
@@ -9,6 +10,8 @@ $config['menu-en']['products'][$i]['title'] = "All Products";
 $config['menu-en']['products'][$i++]['url'] = "products";
 $config['menu-en']['products'][$i]['title'] = "Advanded Search";
 $config['menu-en']['products'][$i++]['url'] = "products/advanced_search";
+$config['menu-en']['products'][$i]['title'] = "Add New";"Products";
+$config['menu-en']['products'][$i++]['url'] = "products/add_product";
 
 $i = 0;
 $config['menu-en']['orders'][$i]['title'] = "Orders";
@@ -27,11 +30,11 @@ $i = 0;
 $config['menu-en']['clients'][$i]['title'] = "Clients";
 $config['menu-en']['clients'][$i++]['url'] = "#";
 $config['menu-en']['clients'][$i]['title'] = "All Clients";
-$config['menu-en']['clients'][$i++]['url'] = "clients";
+$config['menu-en']['clients'][$i++]['url'] = "admin/clients";
 $config['menu-en']['clients'][$i]['title'] = "Advanded Search";
-$config['menu-en']['clients'][$i++]['url'] = "clients/advanced_search";
+$config['menu-en']['clients'][$i++]['url'] = "admin/clients/advanced_search";
 $config['menu-en']['clients'][$i]['title'] = "Add new";
-$config['menu-en']['clients'][$i++]['url'] = "#";
+$config['menu-en']['clients'][$i++]['url'] = "admin/clients/add_client";
 
 $i = 0; // reset for next menu
 $config['menu-en']['settings'][$i]['title'] = "Settings";
@@ -45,12 +48,21 @@ $i = 0; // reset for next menu
 $config['menuleft-en']['clients'][$i]['title'] = "Clients Menu";
 $config['menuleft-en']['clients'][$i++]['url'] = "#";
 $config['menuleft-en']['clients'][$i]['title'] = "All Clients";
-$config['menuleft-en']['clients'][$i++]['url'] = "clients";
+$config['menuleft-en']['clients'][$i++]['url'] = "admin/clients";
 $config['menuleft-en']['clients'][$i]['title'] = "Advanded Search";
-$config['menuleft-en']['clients'][$i++]['url'] = "clients/advanced_search";
+$config['menuleft-en']['clients'][$i++]['url'] = "admin/clients/advanced_search";
 $config['menuleft-en']['clients'][$i]['title'] = "Add new";
-$config['menuleft-en']['clients'][$i++]['url'] = "#";
+$config['menuleft-en']['clients'][$i++]['url'] = "admin/clients/add_client";
 
+$i = 0; // reset for next menu
+$config['menuleft-en']['products'][$i]['title'] ="Products Menu";
+$config['menuleft-en']['products'][$i++]['url'] ="#";
+$config['menuleft-en']['products'][$i]['title'] ="All Products";
+$config['menuleft-en']['products'][$i++]['url'] ="products";
+$config['menuleft-en']['products'][$i]['title'] ="Advanded Search";
+$config['menuleft-en']['products'][$i++]['url'] ="products/advanced_search";
+$config['menuleft-en']['products'][$i]['title'] ="Add New";"Products";
+$config['menuleft-en']['products'][$i++]['url'] ="products/add_product";
 
 $i = 0; // reset for next menu
 $config['menuleft']['settings'][$i]['title'] = "Settings";

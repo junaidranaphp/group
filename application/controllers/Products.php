@@ -16,24 +16,8 @@ class Products extends ADMIN_Controller {
         $per_page = 25;
         $this->pagination->initialize(get_pagination_config($url, $rows, $per_page));
 
-
-
-        if (empty($this->input->post('sort-field'))) {
-            $sort_field = @$this->session->userdata['sort-field'];
-            $sort_order = @$this->session->userdata['sort-order'];
-        } else {
-            $sort_field = @$this->input->post('sort-field');
-            $sort_order = @$this->input->post('sort-order');
-        }
-        if (empty($sort_field)) {
-            $sort_field = "master_product_file_id";
-            $sort_order = "desc";
-        }
-        $this->session->userdata['sort-field'] = $sort_field;
-        $this->session->userdata['sort-order'] = $sort_order;
-
-
-        $data['records'] = $this->products_model->get_products($per_page, $page, $sort_field, $sort_order);
+        $user_pref = get_sorting_preferences('products', 'Code', 'desc');
+        $data['records'] = $this->products_model->get_products($per_page, $page, $user_pref['sort_field'], $user_pref['sort_order']);
         $this->template->set_active_menu('products')
                 ->set_active_submenu('products')
                 ->set_heading(LTEXT('_products'))
