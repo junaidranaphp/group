@@ -29,7 +29,7 @@ class Clients extends CI_Controller {
         //$this->db->order_by($sort_field, $sort_order)->limit($per_page, $this->uri->segment(3));			
         //$data['records'] = $this->db->get();
         $data['records'] = $this->clients_model->get_sorting_cleints($per_page, $page, $user_pref['sort_field'], $user_pref['sort_order']);
-      
+
         $this->template->set_active_menu('clients')
                 ->set_active_submenu('clients')
                 ->set_heading(LTEXT('_all_clients'))
@@ -161,17 +161,9 @@ class Clients extends CI_Controller {
     }
 
     public function delete_client($id) {
-        if ($id == null || !($id > 0)) {
-            $flash_data['content'] = 'Id is illegal or not present';
-            $flash_data['type'] = 'danger';
-            $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('admin'));
-        } else if (!($client = $this->clients_model->get_client($id))) {
-            $flash_data['content'] = 'Id is not present';
-            $flash_data['type'] = 'danger';
-            $this->session->set_flashdata('message', $flash_data);
-            redirect(base_url('admin'));
-        } else {
+        $this->form_validation->set_rules('id', 'ID', 'trim|required');
+        if ($this->form_validation->run() == TRUE) {
+            $id = $this->input->post('id');
             if ($this->clients_model->delete_client($id)) {
                 $flash_data['content'] = 'Client has been deleted successfully';
                 $flash_data['type'] = 'success';
@@ -181,6 +173,26 @@ class Clients extends CI_Controller {
             }
             $this->session->set_flashdata('message', $flash_data);
             redirect(base_url('admin'));
+        } else {
+
+            if ($id == null || !($id > 0)) {
+                $flash_data['content'] = 'Id is illegal or not present';
+                $flash_data['type'] = 'danger';
+                $this->session->set_flashdata('message', $flash_data);
+                redirect(base_url('admin'));
+            } else if (!($client = $this->clients_model->get_client($id))) {
+                $flash_data['content'] = 'Id is not present';
+                $flash_data['type'] = 'danger';
+                $this->session->set_flashdata('message', $flash_data);
+                redirect(base_url('admin'));
+            } else {
+                $data['client'] = $client;
+                $this->template->set_active_menu('clients')
+                        ->set_active_submenu('clients')
+                        ->set_heading(LTEXT('_client'))
+                        ->set_page('clients/confirm_delete')
+                        ->show($data);
+            }
         }
     }
 

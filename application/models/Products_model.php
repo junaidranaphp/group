@@ -30,4 +30,13 @@ class Products_model extends CI_Model {
                         ->delete('master_product_file');
     }
 
+    public function delete_batch($message_ids) {
+        $this->db->where_in('master_product_file_id', $message_ids)
+                ->delete('master_product_file');
+        return $this->db->affected_rows() > 0;
+    }
+    public function get_multiple_products($ids){
+         return $this->db->where_in('master_product_file_id', $ids)
+                        ->get('master_product_file')->result();
+    }
 }

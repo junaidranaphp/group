@@ -24,7 +24,7 @@ class VerifyLogin extends CI_Controller {
             $this->load->view('template/footer');
         } else {
             //Go to private area
-            redirect('clients', 'refresh');
+            redirect(base_url('admin'), 'refresh');
         }
     }
 

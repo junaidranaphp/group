@@ -14,7 +14,7 @@
                 <h3><?php echo LTEXT('_client_list') ?></h3>
             </div>
             <div class="box-content nopadding">
-                <form action="clients" id="form-sort" method="post">
+                
                     <table class="table table-hover table-nomargin table-bordered table-striped">
                         <thead>
                             <tr>
@@ -53,9 +53,10 @@
                             <?php } ?>
                         </tbody>
                     </table>
+                <form method="post" id="form-sort">
                     <input type="hidden" value="" id="sort-order" name="sort-order" />
                     <input type="hidden" value="" id="sort-field" name="sort-field" />
-                </form>
+               </form>
                 <div class="pull-right">
                     <?php echo $this->pagination->create_links(); ?>
                 </div>
