@@ -1,4 +1,11 @@
-
+    
+<script>
+    var base_url = '<?php echo base_url()?>';
+</script>
+<script src='<?php echo base_url('assets/js/myscripts.js') ?>'></script>
+<?php foreach ($this->template->get_js_files() as $file){ ?>
+<script src="<?php echo base_url($file)?>"></script>
+    <?php }?>
 				
         <script type="text/javascript">
             var _gaq = _gaq || [];

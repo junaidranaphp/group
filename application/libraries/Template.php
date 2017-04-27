@@ -10,6 +10,8 @@ class Template {
     private $page;
     private $CI;
     private $extra_data = array();
+    private $css_files = array();
+    private $js_files = array();
 
     public function __construct() {
         $this->CI = &get_instance();
@@ -58,6 +60,24 @@ class Template {
     
     public function set_extra_data($data){
         $this->extra_data = $data;
+    }
+    
+    public function get_css_files() {
+        return $this->css_files;
+    }
+    
+    public function set_css_file($file){
+        $this->css_files[] = $file;
+        return $this;
+    }
+    
+    public function get_js_files() {
+        return $this->js_files;
+    }
+    
+    public function set_js_file($file){
+        $this->js_files[] = $file;
+        return $this;
     }
     
 

@@ -7,12 +7,12 @@ $i = 0;
 $config['menu-en']['products'][$i]['title'] = "Products";
 $config['menu-en']['products'][$i++]['url'] = "#";
 $config['menu-en']['products'][$i]['title'] = "All Products";
-$config['menu-en']['products'][$i++]['url'] = "admin/products";
+$config['menu-en']['products'][$i++]['url'] = "products";
 $config['menu-en']['products'][$i]['title'] = "Advanded Search";
-$config['menu-en']['products'][$i++]['url'] = "admin/products/advanced_search";
+$config['menu-en']['products'][$i++]['url'] = "products/advanced_search";
 $config['menu-en']['products'][$i]['title'] = "Add New";
 "Products";
-$config['menu-en']['products'][$i++]['url'] = "admin/products/add_product";
+$config['menu-en']['products'][$i++]['url'] = "products/add_product";
 
 $i = 0;
 $config['menu-en']['orders'][$i]['title'] = "Orders";

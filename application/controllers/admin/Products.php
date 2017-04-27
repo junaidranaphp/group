@@ -113,6 +113,7 @@ class Products extends BASIC_Controller {
                 $this->template->set_active_menu('products')
                         ->set_active_submenu('products')
                         ->set_heading(LTEXT('_edit_products'))
+                        
                         ->set_page('products/edit_product')
                         ->show($data);
             }
