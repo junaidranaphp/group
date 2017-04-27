@@ -7,7 +7,7 @@
 						<?php echo $this->session->flashdata('success_msg'); ?>
 					</div>
 				<?php } ?>
-				<div><a class="btn btn-success" href="<?php echo base_url('admin/language/add_admin_translation')?>"><?php echo LTEXT('_add_countries')?></a></div>
+				<div><a class="btn btn-success" href="<?php echo base_url('admin/countries/add_countries')?>"><?php echo LTEXT('_add_countries')?></a></div>
 				<div class="box box-color box-bordered">
 					<div class="box-title">
 						<h3><?php echo LTEXT('_admin_countries')?></h3>
@@ -24,7 +24,7 @@
 									<thead>
 										<tr>
 											<th width="10%"><?php echo LTEXT('_actions')?></th>										
-											<th width="35%"><?php echo LTEXT('_ID')?> <?php echo sorting('pais_id')?></th>										
+											<th width="35%"><?php echo LTEXT('_pais_id')?> <?php echo sorting('pais_id')?></th>										
 											<th width="55%"><?php echo LTEXT('_country')?> <?php echo sorting("pais_nombre") ?>
 											</th>										
 										</tr>
@@ -35,10 +35,10 @@
 										<tr>
 											<td>
 												<div class="action-group">
-													<a href="<?php echo base_url('admin/language/edit_admin_translation/'.$country->pais_id)?>" class="btn" rel="tooltip" title="Edit">
+													<a href="<?php echo base_url('admin/countries/edit_countries/'.$country->pais_id)?>" class="btn" rel="tooltip" title="Edit">
 														<i class="fa fa-edit"></i>
 													</a>
-													<a href="<?php echo base_url('admin/language/delete_admin_translation/'.$country->pais_id)?>" class="btn" rel="tooltip" title="Delete">
+													<a href="<?php echo base_url('admin/countries/delete_countries/'.$country->pais_id)?>" class="btn" rel="tooltip" title="Delete">
 														<i class="fa fa-times"></i>
 													</a>
 												</div>

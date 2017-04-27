@@ -58,13 +58,13 @@ function sorting($field) {
 
 function getMenu($menu_group){
 	$menu = get_instance()->config->item('menu');	
-	return $menu[$menu_group];
+	return $menu[strtolower($menu_group)];
 	
 }
 
 function getLeftMenu($menu_group){
 	$menu = get_instance()->config->item('menuleft-' . $_SESSION['language']);	
-	return $menu[$menu_group];
+	return $menu[strtolower($menu_group)];
 	
 }
 function printMenu($menu_group, $title_only = false){

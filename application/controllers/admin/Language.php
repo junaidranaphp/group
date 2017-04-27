@@ -29,7 +29,7 @@ class Language extends CI_Controller
 		$data['languages'] = $this->language_model->get_languages();
 		
 		$this->template->set_active_menu('settings')
-			->set_active_submenu('Language')
+			->set_active_submenu('language')
 			->set_heading(LTEXT('_admin_translations'))
 			->set_page('admin/language/admin_translations')
 			->show($data);

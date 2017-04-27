@@ -1,9 +1,16 @@
-.sort {
-    float: right;    
+@charset "UTF-8";
+.action-group{
+	width: 65px;
+	margin-right:0;
 }
 
-.sort i {
+.sort {
+    float: right;
+    font-size: 1.8em;
     display: block;
     cursor: pointer;
-    line-height: 8px;
+    line-height: 1em;
+}
+.sort i {
+    padding-right: 5px;
 }
