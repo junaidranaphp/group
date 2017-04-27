@@ -394,7 +394,7 @@ $(document).ready(function () {
 				no_sort = $el.attr('data-nosort');
 			// Skip for custom dataTable
 			if ($el.hasClass('dataTable-custom')) return;
-
+			
 			if ($el.hasClass('dataTable-column_filter')) {
 				var types = $el.attr('data-column_filter_types'),
 					position = $el.attr('data-column_filter_position'),

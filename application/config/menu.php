@@ -7,11 +7,12 @@ $i = 0;
 $config['menu-en']['products'][$i]['title'] = "Products";
 $config['menu-en']['products'][$i++]['url'] = "#";
 $config['menu-en']['products'][$i]['title'] = "All Products";
-$config['menu-en']['products'][$i++]['url'] = "products";
+$config['menu-en']['products'][$i++]['url'] = "admin/products";
 $config['menu-en']['products'][$i]['title'] = "Advanded Search";
-$config['menu-en']['products'][$i++]['url'] = "products/advanced_search";
-$config['menu-en']['products'][$i]['title'] = "Add New";"Products";
-$config['menu-en']['products'][$i++]['url'] = "products/add_product";
+$config['menu-en']['products'][$i++]['url'] = "admin/products/advanced_search";
+$config['menu-en']['products'][$i]['title'] = "Add New";
+"Products";
+$config['menu-en']['products'][$i++]['url'] = "admin/products/add_product";
 
 $i = 0;
 $config['menu-en']['orders'][$i]['title'] = "Orders";
@@ -55,14 +56,14 @@ $config['menuleft-en']['clients'][$i]['title'] = "Add new";
 $config['menuleft-en']['clients'][$i++]['url'] = "admin/clients/add_client";
 
 $i = 0; // reset for next menu
-$config['menuleft-en']['products'][$i]['title'] ="Products Menu";
-$config['menuleft-en']['products'][$i++]['url'] ="#";
-$config['menuleft-en']['products'][$i]['title'] ="All Products";
-$config['menuleft-en']['products'][$i++]['url'] ="products";
-$config['menuleft-en']['products'][$i]['title'] ="Advanded Search";
-$config['menuleft-en']['products'][$i++]['url'] ="products/advanced_search";
-$config['menuleft-en']['products'][$i]['title'] ="Add New";"Products";
-$config['menuleft-en']['products'][$i++]['url'] ="products/add_product";
+$config['menuleft-en']['products'][$i]['title'] = "Products Menu";
+$config['menuleft-en']['products'][$i++]['url'] = "#";
+$config['menuleft-en']['products'][$i]['title'] = "All Products";
+$config['menuleft-en']['products'][$i++]['url'] = "admin/products";
+$config['menuleft-en']['products'][$i]['title'] = "Advanded Search";
+$config['menuleft-en']['products'][$i++]['url'] = "admin/products/advanced_search";
+$config['menuleft-en']['products'][$i]['title'] = "Add New";
+$config['menuleft-en']['products'][$i++]['url'] = "admin/products/add_product";
 
 $i = 0; // reset for next menu
 $config['menuleft']['settings'][$i]['title'] = "Settings";

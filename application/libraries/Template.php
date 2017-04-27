@@ -9,13 +9,15 @@ class Template {
     private $heading;
     private $page;
     private $CI;
+    private $extra_data = array();
 
     public function __construct() {
         $this->CI = &get_instance();
     }
 
     public function show($data = array()) {
-        $this->CI->load->view('template/template', $data);
+        $view_data = array_merge($data,$this->extra_data);
+        $this->CI->load->view('template/template', $view_data);
     }
 
     public function set_active_menu($menu_name) {
@@ -54,6 +56,9 @@ class Template {
         return $this->page;
     }
     
+    public function set_extra_data($data){
+        $this->extra_data = $data;
+    }
     
 
 }

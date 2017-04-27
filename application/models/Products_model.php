@@ -8,8 +8,14 @@ class Products_model extends CI_Model {
         return $this->db->insert('master_product_file', $data);
     }
 
-    public function get_products($limit, $start, $sort_field, $sort_order) {
-        return $this->db->limit($limit, $start)->order_by($sort_field, $sort_order)->get('master_product_file')->result();
+    public function get_user_products($limit, $start, $sort_field, $sort_order, $user_id) {
+        return $this->db->select('master_product_file.*')
+                        ->from('permisos')
+                        ->where('permisos.usuario_id', $user_id)
+                        ->join('master_product_file', 'master_product_file.Prod_Grp = permisos.permiso_prodgrp ')
+                        ->limit($limit, $start)
+                        ->order_by($sort_field, $sort_order)
+                        ->get()->result();
     }
 
     public function get_product($id) {
@@ -35,8 +41,25 @@ class Products_model extends CI_Model {
                 ->delete('master_product_file');
         return $this->db->affected_rows() > 0;
     }
-    public function get_multiple_products($ids){
-         return $this->db->where_in('master_product_file_id', $ids)
+
+    public function get_multiple_products($ids) {
+        return $this->db->where_in('master_product_file_id', $ids)
                         ->get('master_product_file')->result();
     }
+
+    public function get_products($limit, $start, $sort_field, $sort_order) {
+        return $this->db->limit($limit, $start)->order_by($sort_field,$sort_order)->get('master_product_file')->result();
+    }
+
+    public function get_user_group_products($limit, $start, $sort_field, $sort_order, $group_name, $user_id) {
+        return $this->db->select('master_product_file.*')
+                        ->from('permisos')
+                        ->where('permisos.usuario_id', $user_id)
+                        ->where('permisos.permiso_prodgrp', $group_name)
+                        ->join('master_product_file', 'master_product_file.Prod_Grp = permisos.permiso_prodgrp ')
+                        ->limit($limit, $start)
+                        ->order_by($sort_field, $sort_order)
+                        ->get()->result();
+    }
+
 }

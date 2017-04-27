@@ -5,7 +5,7 @@
                 <h3><?php echo LTEXT('_products_list') ?></h3>
             </div>
             <div class="box-content nopadding">
-                <form method="post">
+                <form method="post" action="<?php base_url('admin/products/confirm_delete_batch')?>">
                 <table class="table table-hover table-nomargin table-condensed table-bordered table-striped">
                     <thead>
                         <tr>

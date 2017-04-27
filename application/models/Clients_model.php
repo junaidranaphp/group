@@ -7,7 +7,6 @@ class Clients_model extends CI_Model {
     public function __construct() {
         
     }
-
     public function insert_client($data) {
         return $this->db->insert('usuarios', $data);
     }

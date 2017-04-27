@@ -10,10 +10,10 @@
                 <?php 
                  if($edit)
                  {
-                     $form_url = base_url('products/edit_product/'.$product->master_product_file_id);
+                     $form_url = base_url('admin/products/edit_product/'.$product->master_product_file_id);
                  }
                  else{
-                     $form_url = base_url('products/add_product');
+                     $form_url = base_url('admin/products/add_product');
                  }
                 ?>
                 <form action = "<?php echo $form_url?>" method = "POST" class = 'form-horizontal form-striped'>
