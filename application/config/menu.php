@@ -51,6 +51,13 @@ $config['menuleft-en']['clients'][$i++]['url'] = "clients/advanced_search";
 $config['menuleft-en']['clients'][$i]['title'] = "Add new";
 $config['menuleft-en']['clients'][$i++]['url'] = "#";
 
+$i = 0; // reset for next menu
+$config['menuleft-en']['products'][$i]['title'] = "Products Menu";
+$config['menuleft-en']['products'][$i++]['url'] = "#";
+$config['menuleft-en']['products'][$i]['title'] = "All Products";
+$config['menuleft-en']['products'][$i++]['url'] = "products";
+$config['menuleft-en']['products'][$i]['title'] = "Advanded Search";
+$config['menuleft-en']['products'][$i++]['url'] = "products/advanced_search";
 
 $i = 0; // reset for next menu
 $config['menuleft-en']['countries'][$i]['title'] = "Countries";

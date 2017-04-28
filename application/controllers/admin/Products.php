@@ -11,17 +11,12 @@ class Products extends BASIC_Controller {
     }
 
     public function index($page = 0) {
-        $url = base_url() . '/products/index';
-        $rows = $this->products_model->record_count();
-        $per_page = 25;
-        $this->pagination->initialize(get_pagination_config($url, $rows, $per_page));
-        $user_pref = get_sorting_preferences('products', 'Code', 'desc');
-        $data['products'] = $this->products_model->get_products($per_page, $page, $user_pref['sort_field'], $user_pref['sort_order']);
-                         
+        $data['product_group_filter'] = false ;
         $this->template->set_active_menu('products')
                 ->set_active_submenu('products')
                 ->set_heading(LTEXT('_products'))
-                ->set_page('products/products_view')
+                ->set_js_file('assets/js/admin_products_view.js')
+                ->set_page('admin/products/products_view')
                 ->show($data);
     }
 
@@ -167,6 +162,17 @@ class Products extends BASIC_Controller {
 
         $data['groups'] = $this->basic_model->get_user_product_groups($this->session->userdata('userid'));
         $this->template->set_extra_data($data);
+    }
+     public function records(){
+        //echo '{"draw":1,"recordsTotal":57,"recordsFiltered":57,"data":[["Airi","Satou","Accountant","Tokyo","28th Nov 08","$162,700"],["Angelica","Ramos","Chief Executive Officer (CEO)","London","9th Oct 09","$1,200,000"],["Ashton","Cox","Junior Technical Author","San Francisco","12th Jan 09","$86,000"],["Bradley","Greer","Software Engineer","London","13th Oct 12","$132,000"],["Brenden","Wagner","Software Engineer","San Francisco","7th Jun 11","$206,850"],["Brielle","Williamson","Integration Specialist","New York","2nd Dec 12","$372,000"],["Bruno","Nash","Software Engineer","London","3rd May 11","$163,500"],["Caesar","Vance","Pre-Sales Support","New York","12th Dec 11","$106,450"],["Cara","Stevens","Sales Assistant","New York","6th Dec 11","$145,600"],["Cedric","Kelly","Senior Javascript Developer","Edinburgh","29th Mar 12","$433,060"]]}';die;
+        $this->load->library('datatables');
+        $this->datatables->add_column('edit', '<a href="profiles/edit/$1">EDIT</a>', 'master_product_file_id');
+        
+        
+        $result = $this->datatables->select('Code,Prod_Grp,Rim,Pattern_Family,Type,Tubed_Tubeless,Stock,Source,CCT_Price_FOB_2004_Rounded,Net_Price')
+                ->from('master_product_file')
+                ->generate();
+        echo $result ;
     }
     
     
