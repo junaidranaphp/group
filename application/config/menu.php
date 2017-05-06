@@ -31,7 +31,7 @@ $config['menu-en']['clients'][$i++]['url'] = "admin/clients";
 $config['menu-en']['clients'][$i]['title'] = "Advanded Search";
 $config['menu-en']['clients'][$i++]['url'] = "admin/clients/advanced_search";
 $config['menu-en']['clients'][$i]['title'] = "Add new";
-$config['menu-en']['clients'][$i++]['url'] = "#";
+$config['menu-en']['clients'][$i++]['url'] = "admin/clients/add_client";
 
 $i = 0; // reset for next menu
 $config['menu-en']['settings'][$i]['title'] = "Settings";
@@ -49,7 +49,7 @@ $config['menuleft-en']['clients'][$i++]['url'] = "admin/clients";
 $config['menuleft-en']['clients'][$i]['title'] = "Advanded Search";
 $config['menuleft-en']['clients'][$i++]['url'] = "dmin/clients/advanced_search";
 $config['menuleft-en']['clients'][$i]['title'] = "Add new";
-$config['menuleft-en']['clients'][$i++]['url'] = "#";
+$config['menuleft-en']['clients'][$i++]['url'] = "admin/clients/add_client";
 
 $i = 0; // reset for next menu
 $config['menuleft-en']['products'][$i]['title'] = "Products Menu";
