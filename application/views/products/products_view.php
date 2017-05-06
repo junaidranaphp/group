@@ -4,8 +4,9 @@
             <div class="box-title">
                 <h3><?php echo LTEXT('_products_list') ?></h3>
             </div>
+            <div id="test"></div>
             <div class="box-content nopadding">
-                <table id="mytabless" class="table table-condensed table-hover table-nomargin table-bordered dataTable-column_filter" data-column_filter_types="text,text,text,text,text,text,text,text,text,text,null">
+                <table id="mytabless" class="table table-condensed table-hover table-nomargin table-bordered dataTable-column_filter dataTable-scroll-x" data-column_filter_types="text,text,text,text,text,text,text,text,text,text,null">
                     <thead>
 
                         <tr>

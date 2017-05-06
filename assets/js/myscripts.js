@@ -29,7 +29,12 @@ function render_datatable(options) {
                     $table = $(this);
             // Add the filter to head or foot
             if (position == 'top') {
-                $filter_row.appendTo($table.find('thead'));
+                if ($el.hasClass('dataTable-scroll-x')) {
+                    $filter_row.appendTo($('.dataTables_scrollHead thead'));
+                }else{
+                    $filter_row.appendTo($table.find('thead'));
+                }
+
             } else {
                 if ($table.find('tfoot').length == 0) {
                     $('<tfoot></tfoot>').appendTo($table);
