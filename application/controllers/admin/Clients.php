@@ -17,22 +17,12 @@ class Clients extends CI_Controller {
     }
 
     public function index($page = 0) {
-
-        $url = base_url() . 'admin/clients/index';
-        $rows = $this->clients_model->record_count();
-        $per_page = 25;
-        $this->pagination->initialize(get_pagination_config($url, $rows, $per_page));
-
-
-        $user_pref = get_sorting_preferences('clients', 'usuario_id', 'desc');
-
-        //$this->db->order_by($sort_field, $sort_order)->limit($per_page, $this->uri->segment(3));			
-        //$data['records'] = $this->db->get();
-        $data['records'] = $this->clients_model->get_sorting_cleints($per_page, $page, $user_pref['sort_field'], $user_pref['sort_order']);
-
+        
+        $data['product_group_filter'] = false ;
         $this->template->set_active_menu('clients')
                 ->set_active_submenu('clients')
                 ->set_heading(LTEXT('_all_clients'))
+                ->set_js_file('assets/js/admin_clients_view.js')
                 ->set_page('clients/index')
                 ->show($data);
     }
@@ -1243,6 +1233,18 @@ class Clients extends CI_Controller {
     function reset_search() {
         $this->session->unset_userdata('advanced_search_filter');
         redirect(base_url('clients'));
+    }
+    
+     public function records(){
+        //echo '{"draw":1,"recordsTotal":57,"recordsFiltered":57,"data":[["Airi","Satou","Accountant","Tokyo","28th Nov 08","$162,700"],["Angelica","Ramos","Chief Executive Officer (CEO)","London","9th Oct 09","$1,200,000"],["Ashton","Cox","Junior Technical Author","San Francisco","12th Jan 09","$86,000"],["Bradley","Greer","Software Engineer","London","13th Oct 12","$132,000"],["Brenden","Wagner","Software Engineer","San Francisco","7th Jun 11","$206,850"],["Brielle","Williamson","Integration Specialist","New York","2nd Dec 12","$372,000"],["Bruno","Nash","Software Engineer","London","3rd May 11","$163,500"],["Caesar","Vance","Pre-Sales Support","New York","12th Dec 11","$106,450"],["Cara","Stevens","Sales Assistant","New York","6th Dec 11","$145,600"],["Cedric","Kelly","Senior Javascript Developer","Edinburgh","29th Mar 12","$433,060"]]}';die;
+        $this->load->library('datatables');
+        if($this->input->post('wherefield')){
+            $this->datatables->where('Prod_Grp',$this->input->post('wherefield') );
+        }
+        $result = $this->datatables->select('usuario_id,usuario_usuario,usuario_empresa,usuario_email,usuario_telefono,usuario_direccion')
+                ->from('usuarios')
+                ->generate();
+        echo $result ;
     }
 
 }
