@@ -31,6 +31,7 @@ $(document).ready(function () {
         "columnDefs": [
             {
                 "render": function (data) {
+                    return '<button data-id="' + data + '" class="btn btn-xs btn-default detail"><span class="fa fa-th-list"></span></button>';
                 },
                 "targets": 10
             }
