@@ -12,8 +12,9 @@ $(document).ready(function () {
                 }
             }
         },
+        //"scrollX" : true,
         "order": [[0, "desc"]],
-        stateSave: true,
+        "stateSave": true,
         "aoColumns": [
             {"orderSequence": ["desc", "asc"]},
             {"orderSequence": ["desc", "asc"]},

@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/group/application/controllers/Products.php</file>
-            <file>file:/C:/wamp/www/group/application/controllers/admin/Products.php</file>
-            <file>file:/C:/wamp/www/group/application/views/products/products_view.php</file>
-            <file>file:/C:/wamp/www/group/application/views/includes/menu_left_products.php</file>
-            <file>file:/C:/wamp/www/group/application/models/Basic_model.php</file>
-            <file>file:/C:/wamp/www/group/application/models/Products_model.php</file>
+            <file>file:/C:/xampp/htdocs/group/assets/js/products_view.js</file>
+            <file>file:/C:/xampp/htdocs/group/application/views/products/products_view.php</file>
+            <file>file:/C:/xampp/htdocs/group/assets/js/eakroko.js</file>
+            <file>file:/C:/xampp/htdocs/group/assets/js/myscripts.js</file>
+            <file>file:/C:/xampp/htdocs/group/application/config/database.php</file>
+            <file>file:/C:/xampp/htdocs/group/application/controllers/Products.php</file>
+            <file>file:/C:/xampp/htdocs/group/application/config/config.php</file>
         </group>
     </open-files>
 </project-private>
