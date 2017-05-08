@@ -27,7 +27,7 @@
         </div>
         <div class="breadcrumbs form-group">
             <ul>
-                <li><a href="more-login.html"><?php echo LTEXT('_home')?></a> <i
+                <li><a href="more-login.html"><?php echo LTEXT('_home') ?></a> <i
                         class="fa fa-angle-right"></i></li>
                 <li><a href="#"><?php echo $this->template->get_active_menu() ?></a> <i
                         class="fa fa-angle-right"></i></li>
@@ -38,8 +38,17 @@
                 </a>
             </div>
         </div>
-        <div class="form-group">
-            <?php if (($message = $this->session->flashdata('message'))) { ?>
+        <div class="pull-right">
+            <?php
+            $widgets = $this->template->get_widget_file();
+            if ($widgets != NULL) {
+                $this->load->view($widgets);
+            }
+            ?>
+        </div>
+
+        <?php if (($message = $this->session->flashdata('message'))) { ?>
+            <div class="form-group">
                 <div class="alert alert-block alert-<?php echo $message['type'] ?>">
                     <a class="close" data-dismiss="alert" href="#">×</a>
                     <h4 class="alert-heading"><i class="fa fa-comment"></i> <?php echo $message['type'] ?>!</h4>
@@ -49,7 +58,9 @@
                     </p>
                     <p></p>
                 </div>
-            <?php } else if (validation_errors()) { ?>
+            </div>
+        <?php } else if (validation_errors()) { ?>
+            <div class="form-group">
                 <div class="alert alert-block alert-danger">
                     <a class="close" data-dismiss="alert" href="#">×</a>
                     <h4 class="alert-heading"><i class="fa fa-comment"></i> Validation Check!</h4>
@@ -57,5 +68,7 @@
                         <?php echo validation_errors() ?>
                     </p>
                 </div>
-            <?php } ?>
-        </div>
+            </div>
+        <?php } ?>
+        
+

@@ -9,6 +9,8 @@ $config['menu-en']['products'][$i]['title'] = "All Products";
 $config['menu-en']['products'][$i++]['url'] = "products";
 $config['menu-en']['products'][$i]['title'] = "Advanded Search";
 $config['menu-en']['products'][$i++]['url'] = "products/advanced_search";
+$config['menu-en']['products'][$i]['title'] = "<span class='fa fa-user-secret'></span>Manage";
+$config['menu-en']['products'][$i++]['url'] = "admin/products";
 
 $i = 0;
 $config['menu-en']['orders'][$i]['title'] = "Orders";

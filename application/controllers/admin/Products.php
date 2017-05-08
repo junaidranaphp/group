@@ -16,6 +16,7 @@ class Products extends BASIC_Controller {
                 ->set_active_submenu('products')
                 ->set_heading(LTEXT('_products'))
                 ->set_js_file('assets/js/admin_products_view.js')
+                ->set_widget_file('admin/products/widget_file')
                 ->set_page('admin/products/products_view')
                 ->show($data);
     }
