@@ -23,7 +23,7 @@ class Clients extends CI_Controller {
                 ->set_active_submenu('clients')
                 ->set_heading(LTEXT('_all_clients'))
                 ->set_js_file('assets/js/admin_clients_view.js')
-                ->set_widget_file('clients/widget_file')
+                ->set_widget_file('clients/widget_file',2)
                 ->set_page('clients/index')
                 ->show($data);
     }
@@ -83,6 +83,7 @@ class Clients extends CI_Controller {
                     ->set_active_submenu('clients')
                     ->set_heading(LTEXT('_add_client'))
                     ->set_page('clients/edit_client')
+                    ->set_widget_file('clients/widget_file',1)
                     ->show($data);
         }
     }

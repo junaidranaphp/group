@@ -12,7 +12,8 @@ class Template {
     private $extra_data = array();
     private $css_files = array();
     private $js_files = array();
-    private $widget_file ;
+    private $widget_file;
+    private $widget_active;
 
     public function __construct() {
         $this->CI = &get_instance();
@@ -80,12 +81,18 @@ class Template {
         $this->js_files[] = $file;
         return $this;
     }
-    
-    public function set_widget_file($widget_file) {
+
+    public function set_widget_file($widget_file, $active = null) {
         $this->widget_file = $widget_file;
+        $this->widget_active = $active;
         return $this;
     }
+
     public function get_widget_file() {
         return $this->widget_file;
+    }
+
+    public function get_widget_active() {
+        return $this->widget_active;
     }
 }

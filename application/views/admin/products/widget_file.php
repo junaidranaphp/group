@@ -1,3 +1,2 @@
-<a class="btn btn-success" href="<?php echo base_url('admin/products/add_product')?>">Add Product</a> 
-<a class="btn btn-success" href="<?php echo base_url('products')?>">products</a>
-
+<a href="<?php echo base_url('admin/products')?>" class="btn <?php echo ($this->template->get_widget_active()==2) ? 'btn-default active' : 'btn-success'?>">products</a> 
+<a href="<?php echo base_url('admin/products/add_product')?>" class="btn <?php echo ($this->template->get_widget_active()==1) ? 'btn-default active' : 'btn-success'?>">Add Product</a> 
