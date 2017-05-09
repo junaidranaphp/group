@@ -26,7 +26,7 @@
                 ?>
             </ul>
         </div>
-        
+
         <div class="subnav">
             <div class="subnav-title">
                 <a href="#" class='toggle-subnav'>
@@ -35,9 +35,16 @@
                 </a>
             </div>
             <ul class="subnav-menu">					
-                <?php foreach ($groups as $group) {
-                    echo'<li><a href="' . base_url('products/group/').$group->group_name . '">'  . $group->group_name . '</a></li>';
-                } ?>
+                <?php
+                foreach ($groups as $group) {
+                    if (isset($products_group) && $products_group == $group->group_name) {
+                        $active_class = 'my-active';
+                    } else {
+                        $active_class = '';
+                    }
+                    echo'<li class="' . $active_class . '"><a href="' . base_url('products/group/') . $group->group_name . '">' . $group->group_name . '</a></li>';
+                }
+                ?>
             </ul>
         </div>
 

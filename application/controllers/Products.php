@@ -11,7 +11,7 @@ class Products extends BASIC_Controller {
     }
 
     public function index($page = 0) {
-        $data['product_group_filter'] = false;
+        $data['product_group_filter'] = false ;
         $this->template->set_active_menu('products')
                 ->set_active_submenu('products')
                 ->set_heading(LTEXT('_products'))
@@ -20,9 +20,11 @@ class Products extends BASIC_Controller {
                 ->show($data);
     }
 
-    public function group($group_name = '', $page = 0) {
-        $group_name = str_replace('%20', ' ', $group_name);
-        $data['product_group_filter'] = $group_name;
+    public function group($group_name='',$page=0){
+       
+       $group_name = str_replace('%20', ' ', $group_name);
+       $data['products_group'] = $group_name ;
+       $data['product_group_filter'] = $group_name ;
         $this->template->set_active_menu('products')
                 ->set_active_submenu('products')
                 ->set_js_file('assets/js/products_view.js')

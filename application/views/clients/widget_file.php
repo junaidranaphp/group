@@ -1,0 +1,2 @@
+<a href="<?php echo base_url('admin/clients')?>" class="btn <?php echo ($this->template->get_widget_active()==2) ? 'btn-default active' : 'btn-success'?>">Clients</a> 
+<a href="<?php echo base_url('admin/clients/add_client')?>" class="btn <?php echo ($this->template->get_widget_active()==1) ? 'btn-default active' : 'btn-success'?>">Add Client</a> 
