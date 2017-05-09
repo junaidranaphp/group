@@ -49,7 +49,7 @@ $config['menuleft-en']['clients'][$i++]['url'] = "#";
 $config['menuleft-en']['clients'][$i]['title'] = "All Clients";
 $config['menuleft-en']['clients'][$i++]['url'] = "admin/clients";
 $config['menuleft-en']['clients'][$i]['title'] = "Advanded Search";
-$config['menuleft-en']['clients'][$i++]['url'] = "dmin/clients/advanced_search";
+$config['menuleft-en']['clients'][$i++]['url'] = "admin/clients/advanced_search";
 $config['menuleft-en']['clients'][$i]['title'] = "Add new";
 $config['menuleft-en']['clients'][$i++]['url'] = "admin/clients/add_client";
 

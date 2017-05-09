@@ -27,24 +27,11 @@ class Clients extends CI_Controller {
                 ->set_page('clients/index')
                 ->show($data);
     }
-
-    public function view($id = NULL) {
-        $data['title'] = LTEXT('_address_detail');
-        $data['news_item'] = $this->clients_model->get_address($id);
-    }
-
+    
     function logout() {
         $this->session->unset_userdata('logged_in');
         session_destroy();
         redirect('home', 'refresh');
-    }
-
-    public function view_client() {
-        $this->template->set_active_menu('clients')
-                ->set_active_submenu('clients')
-                ->set_heading(LTEXT('_global_addresses'))
-                ->set_page('clients/edit_client')
-                ->show();
     }
 
     public function add_client() {
