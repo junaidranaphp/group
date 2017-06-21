@@ -1,4 +1,4 @@
-<script src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
+
 <div class="row">
     <div class="col-sm-12">
         <div class="box box-color box-bordered">
