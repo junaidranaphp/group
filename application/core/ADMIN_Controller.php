@@ -14,6 +14,7 @@ class ADMIN_Controller extends CI_Controller {
 }
 
 class BASIC_Controller extends CI_Controller {
+
     function __construct() {
         parent::__construct();
         if (!$this->session->userdata('logged_in')) {
@@ -29,6 +30,21 @@ class BASIC_Controller extends CI_Controller {
 
         $data['groups'] = $this->basic_model->get_user_product_groups($this->session->userdata('userid'));
         $this->template->set_extra_data($data);
+    }
+
+}
+
+class BASIC_ajax_Controller extends CI_Controller {
+
+    public function __construct() {
+        parent::__construct();
+        if (!$this->session->userdata('logged_in')) {
+            $message = array(
+                'type' => 'danger',
+                'message' => 'User is logged out'
+            );
+            die(json_encode($message));
+        }
     }
 
 }

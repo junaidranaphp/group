@@ -73,6 +73,17 @@
                             <td>Ptrn_Family : <span id="ptrn_family"></span></td>
                             <td>Price_FOB : <span id="Price_FOB"></span></td>
                         </tr>
+                        <tr>
+                            <td>
+                                Quantity
+                                <input class="form-control" id="quantity-input"></td>
+                            <td>
+                                Sub total 
+                                <div>
+                                    <strong class="text-danger" id="subtotal"></strong>
+                                </div>
+                            </td>
+                        </tr>
                         
                     </tbody>
                 </table>
@@ -88,6 +99,7 @@
             </div>
             <!-- /.modal-body -->
             <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="confirm-item-btn" data-id="" data-dismiss="modal">Confirm</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
             <!-- /.modal-footer -->

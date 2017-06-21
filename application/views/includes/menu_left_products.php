@@ -48,4 +48,11 @@
             </ul>
         </div>
 
+        <div class="subnav">
+            <div class=" heading-cart">
+                <h3>Cart</h3>
+            </div>
+
+            <div id="cart-wrapper"></div>
+        </div>
     </div>

@@ -53,5 +53,22 @@ class Products extends BASIC_Controller {
         $product = $this->products_model->get_product($id);
         die(json_encode($product));
     }
-
+   
+    public function checkout(){
+        $data['product_group_filter'] = false ;
+         $this->template->set_active_menu('products')
+                ->set_active_submenu('products')
+                ->set_heading(LTEXT('_products'))
+                ->set_js_file('assets/js/products_view.js')
+                ->set_page('products/checkout')
+                ->show($data);
+    }
+    public function insert_order() {
+        var_dump($this->cart->contents()); die();   
+    }
+    public function destroy(){
+        $this->cart->destroy();
+        redirect('products');
+    }
 }
+
