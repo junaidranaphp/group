@@ -43,14 +43,19 @@ $(document).ready(function () {
                 },
                 "targets": 10
             }
-        ]
+        ],
+        scrollCollapse: true,
+        "fixedColumns":   {
+            leftColumns: 0,
+            rightColumns: 1
+        }
     };
     // this function is present in myscripts.js file . renders advanced datatables with serverside processing
     render_datatable(my_options);
 
     function check_cart(product_id) {
-        var quantity = 0;
-        
+        var quantity = 1;
+
         for (var key in main_cart_products) {
             product = main_cart_products[key];
             if (product_id == product.id) {
@@ -94,34 +99,41 @@ $(document).ready(function () {
             var products = response.products;
             main_cart_products = products;
             var products_html = '';
+            var empty_cart = true;
             for (var key in products) {
+                empty_cart = false;
                 product = products[key];
                 mark_products_by_cart(product);
                 products_html += render_product(product);
             }
             var total = response.total;
-            var cart_html = '';
-            cart_html += '<table class="table table-bordered table-condensed my-table" >';
-            cart_html += '<thead>';
-            cart_html += '<tr>';
-            cart_html += '<th>Code</th>';
-            cart_html += '<th>Qty</th>';
-            cart_html += '</tr>';
-            cart_html += '</thead>';
-            cart_html += '<tfoot>';
-            cart_html += '<tr>';
-            cart_html += '<td>Total</td>';
-            cart_html += '<td>' + total + '</td>';
-            cart_html += '</tr>';
-            cart_html += '<tr>';
-            cart_html += '<td><a class="btn btn-success" href="' + base_url + 'products/checkout">CheckOut</a></td>';
-            cart_html += '</tr>';
-            cart_html += '</tfoot>';
-            cart_html += '<tbody>';
-            cart_html += products_html;
-            cart_html += '</tbody>';
-            cart_html += '</table>';
 
+            var cart_html = '';
+            if (empty_cart == true) {
+                cart_html += '<h4 class="text-danger">Your cart is empty</h4>';
+            } else {
+                cart_html += '<table class="table table-bordered table-condensed my-table" >';
+                cart_html += '<thead>';
+                cart_html += '<tr>';
+                cart_html += '<th>Code</th>';
+                cart_html += '<th>Qty</th>';
+                cart_html += '</tr>';
+                cart_html += '</thead>';
+                cart_html += '<tfoot>';
+                cart_html += '<tr>';
+                cart_html += '<td>Total</td>';
+                cart_html += '<td>' + total + '</td>';
+                cart_html += '</tr>';
+                cart_html += '<tr>';
+                cart_html += '<td><a class="btn btn-success" href="' + base_url + 'products/checkout">CheckOut</a></td>';
+                cart_html += '<td><a class="btn btn-danger" href="' + base_url + 'products/destroy">Clear</a></td>';
+                cart_html += '</tr>';
+                cart_html += '</tfoot>';
+                cart_html += '<tbody>';
+                cart_html += products_html;
+                cart_html += '</tbody>';
+                cart_html += '</table>';
+            }
             $('#cart-wrapper').html(cart_html);
         }
     }
@@ -159,7 +171,7 @@ $(document).ready(function () {
     $('#confirm-item-btn').click(function () {
         var product_id = $(this).attr('data-id');
 
-        var quantity = $('#quantityBNHTRXC1U89-input').val();
+        var quantity = $('#quantity-input').val();
         jQuery.ajax({
             url: base_url + 'products_ajax/add_product/',
             type: "POST",

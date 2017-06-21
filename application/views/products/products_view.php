@@ -1,4 +1,4 @@
-
+<script src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
 <div class="row">
     <div class="col-sm-12">
         <div class="box box-color box-bordered">
@@ -54,17 +54,17 @@
                             <td>Prod_Grp : <span id="prod_grp"></span></td>
                             <td>Size : <span id="size"></span></td>
                         </tr>
-                        
+
                         <tr>
                             <td>Rim : <span id="rim"></span></td>
                             <td>Brand : <span id="Brand"></span></td>
                         </tr>
-                        
+
                         <tr>
                             <td>Source : <span id="source"></span></td>
                             <td>Type : <span id="type"></span></td>
                         </tr>
-                        
+
                         <tr>
                             <td>Tubed/Tubeless : <span id="tt"></span></td>
                             <td>Net_price : <span id="net_price"></span></td>
@@ -84,7 +84,7 @@
                                 </div>
                             </td>
                         </tr>
-                        
+
                     </tbody>
                 </table>
                 <!--<h4 id="Code"></h4>
