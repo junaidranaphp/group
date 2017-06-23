@@ -90,6 +90,9 @@ $(document).ready(function () {
         product_html += '<tr>';
         product_html += '<td>' + product.name + '</td>';
         product_html += '<td>' + product.qty + '</td>';
+        product_html += '<td>' + product.price + '</td>';
+        product_html += '<td>' + product.subtotal + '</td>';
+        product_html += '<td><button data-id="' + product.id + '" class="btn btn-xs btn-default detail"><span class="fa fa-th-list"></span></button></td>';
         product_html += '</tr>';
         return product_html;
     }
@@ -117,16 +120,18 @@ $(document).ready(function () {
                 cart_html += '<tr>';
                 cart_html += '<th>Code</th>';
                 cart_html += '<th>Qty</th>';
+                cart_html += '<th>Price</th>';
+                cart_html += '<th>Sub-total</th>';
+                cart_html += '<th>Action</th>';
                 cart_html += '</tr>';
                 cart_html += '</thead>';
                 cart_html += '<tfoot>';
                 cart_html += '<tr>';
+                cart_html += '<th></th>';
+                cart_html += '<th></th>';
                 cart_html += '<th>Total</th>';
                 cart_html += '<th>' + total + '</th>';
-                cart_html += '</tr>';
-                cart_html += '<tr>';
-                cart_html += '<td><a class="btn btn-success" href="' + base_url + 'products/checkout">CheckOut</a></td>';
-                cart_html += '<td><a class="btn btn-danger" href="' + base_url + 'products/destroy">Clear</a></td>';
+                cart_html += '<th></th>';
                 cart_html += '</tr>';
                 cart_html += '</tfoot>';
                 cart_html += '<tbody>';
@@ -134,7 +139,7 @@ $(document).ready(function () {
                 cart_html += '</tbody>';
                 cart_html += '</table>';
             }
-            $('#cart-wrapper').html(cart_html);
+            $('#cart-wrapper2').html(cart_html);
         }
     }
     $(document).on('click', '.detail', function () {
@@ -197,3 +202,4 @@ $(document).ready(function () {
     });
 
 });
+

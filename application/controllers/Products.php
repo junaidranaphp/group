@@ -11,7 +11,7 @@ class Products extends BASIC_Controller {
     }
 
     public function index($page = 0) {
-        $data['product_group_filter'] = false ;
+        $data['product_group_filter'] = false;
         $this->template->set_active_menu('products')
                 ->set_active_submenu('products')
                 ->set_heading(LTEXT('_products'))
@@ -20,11 +20,11 @@ class Products extends BASIC_Controller {
                 ->show($data);
     }
 
-    public function group($group_name='',$page=0){
-       
-       $group_name = str_replace('%20', ' ', $group_name);
-       $data['products_group'] = $group_name ;
-       $data['product_group_filter'] = $group_name ;
+    public function group($group_name = '', $page = 0) {
+
+        $group_name = str_replace('%20', ' ', $group_name);
+        $data['products_group'] = $group_name;
+        $data['product_group_filter'] = $group_name;
         $this->template->set_active_menu('products')
                 ->set_active_submenu('products')
                 ->set_js_file('assets/js/products_view.js')
@@ -50,25 +50,67 @@ class Products extends BASIC_Controller {
     }
 
     public function get_product($id) {
-        $product = $this->products_model->get_product($id);
+        $user_id = $this->session->userdata('userid');
+        $product = $this->products_model->get_user_product($id,$user_id);
         die(json_encode($product));
     }
-   
-    public function checkout(){
-        $data['product_group_filter'] = false ;
-         $this->template->set_active_menu('products')
+
+    public function checkout() {
+        $data['product_group_filter'] = false;
+        $this->template->set_active_menu('products')
                 ->set_active_submenu('products')
                 ->set_heading(LTEXT('_products'))
-                ->set_js_file('assets/js/products_view.js')
+                ->set_js_file('assets/js/checkout.js')
                 ->set_page('products/checkout')
                 ->show($data);
     }
+
     public function insert_order() {
-        var_dump($this->cart->contents()); die();   
+        if ($this->cart->contents()) {
+            $insert_data['user_id'] = $this->session->userdata('userid');
+            $insert_data['date_created'] = date('Y-m-d H:i:s');
+            if ($this->products_model->insert_order($insert_data)) {
+                $order_id = $this->db->insert_id();
+                if ($this->insert_order_products($order_id)) {
+                    $this->cart->destroy();
+                    $flash_data['content'] = 'Order created successfully';
+                    $flash_data['type'] = 'success';
+                    $this->session->set_flashdata('message', $flash_data);
+                    redirect(base_url('products'));
+                } else {
+                    $flash_data['content'] = 'Order could not be created';
+                    $flash_data['type'] = 'danger';
+                    $this->session->set_flashdata('message', $flash_data);
+                    redirect(base_url('products'));
+                }
+            } else {
+                $flash_data['content'] = 'Order could not be created';
+                $flash_data['type'] = 'danger';
+                $this->session->set_flashdata('message', $flash_data);
+                redirect(base_url('products'));
+            }
+        }
     }
-    public function destroy(){
+
+    private function insert_order_products($order_id) {
+        $insert_data = array();
+        foreach ($this->cart->contents() as $key => $product) {
+            $insert_data[$key]['order_id'] = $order_id;
+            $insert_data[$key]['user_id'] = $this->session->userdata('userid');
+            $insert_data[$key]['product_id'] = $product['id'];
+            $insert_data[$key]['product_quantity'] = $product['qty'];
+            $insert_data[$key]['product_price'] = $product['price'];
+        }
+        if ($this->products_model->insert_order_products($insert_data)) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function destroy() {
         $this->cart->destroy();
         redirect('products');
     }
-}
 
+}

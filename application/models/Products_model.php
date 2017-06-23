@@ -48,7 +48,7 @@ class Products_model extends CI_Model {
     }
 
     public function get_products($limit, $start, $sort_field, $sort_order) {
-        return $this->db->limit($limit, $start)->order_by($sort_field,$sort_order)->get('master_product_file')->result();
+        return $this->db->limit($limit, $start)->order_by($sort_field, $sort_order)->get('master_product_file')->result();
     }
 
     public function get_user_group_products($limit, $start, $sort_field, $sort_order, $group_name, $user_id) {
@@ -60,6 +60,23 @@ class Products_model extends CI_Model {
                         ->limit($limit, $start)
                         ->order_by($sort_field, $sort_order)
                         ->get()->result();
+    }
+
+    public function insert_order($data) {
+        return $this->db->insert('orders', $data);
+    }
+
+    public function insert_order_products($data) {
+        return $this->db->insert_batch('order_products', $data);
+    }
+
+    public function get_user_product($product_id ,$user_id) {
+        return $this->db->select('master_product_file.*')
+                        ->from('master_product_file')
+                        ->where('master_product_file.master_product_file_id', $product_id)
+                        ->join('permisos', 'master_product_file.Prod_Grp = permisos.permiso_prodgrp and permisos.usuario_id = '.$user_id)
+                        
+                        ->get()->row();
     }
 
 }

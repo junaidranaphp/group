@@ -339,6 +339,8 @@ class Datatables {
      * @return mixed
      */
     private function get_display_result() {
+//        $this->ci->db->get($this->table);
+//        echo $this->ci->db->last_query();;die;
         return $this->ci->db->get($this->table);
     }
 
